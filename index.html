@@ -231,8 +231,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/11/14/hello-world/" itemprop="url">
-                  Hello World
+                <a class="post-title-link" href="/2015/11/17/excell/" itemprop="url">
+                  excell
                 </a>
               
             
@@ -242,8 +242,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-11-14T17:32:00+08:00" content="2015-11-14">
-              2015-11-14
+            <time itemprop="dateCreated" datetime="2015-11-17T19:53:21+08:00" content="2015-11-17">
+              2015-11-17
             </time>
           </span>
 
@@ -252,8 +252,8 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/介绍/" itemprop="url" rel="index">
-                    <span itemprop="name">介绍</span>
+                  <a href="/categories/常用包/" itemprop="url" rel="index">
+                    <span itemprop="name">常用包</span>
                   </a>
                 </span>
 
@@ -284,16 +284,11 @@
         
           <span itemprop="articleBody">
             
-              <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
+              <h2 id="PHPExcel常用方法">PHPExcel常用方法</h2><h3 id="下载">下载</h3><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">composer</span> <span class="preprocessor">require</span> phpoffice/phpexcel</span><br></pre></td></tr></table></figure>
+<h3 id="使用（实例化）">使用（实例化）</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">"vendor/autoload.php"</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">SimpleExcel</span>\<span class="title">SimpleExcel</span>; <span class="comment">//当你的项目中没有用到命名空间不用写这一行</span></span><br><span class="line"><span class="variable">$obj</span> = <span class="keyword">new</span> PHPExcel();</span><br></pre></td></tr></table></figure>
+<h3 id="操作sheet1">操作sheet1</h3><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$obj-</span>&gt;setactivesheetindex(<span class="number">0</span>);</span><br><span class="line"><span class="variable">$obj-</span>&gt;getActiveSheet()</span><br><span class="line">         -&gt;setCellValue(<span class="string">'A'</span>，<span class="string">"a"</span>)</span><br><span class="line">         -&gt;setCellValue(<span class="string">'B'</span>, <span class="string">'b'</span>);  </span><br><span class="line"> <span class="variable">$obj-</span>&gt;getActiveSheet()-&gt;setTitle(<span class="string">'这是sheet1'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="操作sheet2">操作sheet2</h3><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$obpe-</span>&gt;createSheet();</span><br><span class="line"><span class="variable">$obj-</span>&gt;getActiveSheet()        </span><br><span class="line">	-&gt;setCellValue(<span class="string">'A'</span>，<span class="string">"a"</span>)         </span><br><span class="line">    -&gt;setCellValue(<span class="string">'B'</span>, <span class="string">'b'</span>);  </span><br><span class="line"><span class="variable">$obj-</span>&gt;getActiveSheet()-&gt;setTitle(<span class="string">'这是sheet2'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="下载-1">下载</h3><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$objPHPExcel</span><span class="subst">-&gt;</span>setActiveSheetIndex(<span class="number">0</span>); <span class="comment">// opend it on the first sheet</span></span><br><span class="line"> <span class="comment">// Redirect output to a client’s web browser (Excel2007) </span></span><br><span class="line"><span class="keyword">header</span>(<span class="string">'Content-Type:application/vnd.openxmlformatsofficedocument.spreadsheetml.sheet'</span>);</span><br><span class="line"><span class="keyword">header</span>(<span class="string">'Content-Disposition: attachment;filename="问吧数据.xlsx"'</span>);</span><br><span class="line"><span class="keyword">header</span>(<span class="string">'Cache-Control: max-age=0'</span>);</span><br><span class="line"><span class="comment">// If you're serving to IE 9, then the following may be needed</span></span><br><span class="line"><span class="keyword">header</span>(<span class="string">'Cache-Control: max-age=1'</span>);</span><br><span class="line"><span class="comment">// If you're serving to IE over SSL, then the following may be needed</span></span><br><span class="line"><span class="keyword">header</span>(<span class="string">'Expires: Mon, 26 Jul 1997 05:00:00 GMT'</span>); <span class="comment">// Date in the past</span></span><br><span class="line"><span class="keyword">header</span>(<span class="string">'Last-Modified: '</span> <span class="built_in">. </span>gmdate(<span class="string">'D, d M Y H:i:s'</span>) <span class="built_in">. </span><span class="string">' GMT'</span>); <span class="comment">// always modified</span></span><br><span class="line"><span class="keyword">header</span>(<span class="string">'Cache-Control: cache, must-revalidate'</span>); <span class="comment">// HTTP/1.1</span></span><br><span class="line"><span class="keyword">header</span>(<span class="string">'Pragma: public'</span>); <span class="comment">// HTTP/1.0</span></span><br><span class="line"><span class="variable">$objWriter</span> = PHPExcel_IOFactory<span class="tag">::createWriter</span>(<span class="variable">$objPHPExcel</span>, <span class="string">'Excel2007'</span>);</span><br><span class="line"><span class="variable">$objWriter</span><span class="subst">-&gt;</span>save(<span class="string">'php://output'</span>);</span><br><span class="line">exit();</span><br></pre></td></tr></table></figure>
             
           </span>
         
@@ -356,14 +351,14 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
