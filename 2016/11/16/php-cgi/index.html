@@ -63,7 +63,7 @@
 <meta property="og:description" content="佛家有人生三重境界之说,即:“看山是山,看水是水;看山不是山,看水不是水;看山还是山,看水还是水。反观学习的各种东西，有那一个不是如此呢。初入门的时候，被问到服务器是怎么解析php的，会很自信的回答，nginx把请求交给php，php把执行结果返回给nginx然后响应给浏览器。这样的回答，应该是没有任何问题的。但是请求是怎么交给php的呢？当时忙碌在每天的业务代码中，无暇也无心来关注这些。
 
 哪现">
-<meta property="og:updated_time" content="2016-11-18T03:05:44.000Z">
+<meta property="og:updated_time" content="2016-11-18T03:15:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nginx是怎么把请求转发给php的？">
 <meta name="twitter:description" content="佛家有人生三重境界之说,即:“看山是山,看水是水;看山不是山,看水不是水;看山还是山,看水还是水。反观学习的各种东西，有那一个不是如此呢。初入门的时候，被问到服务器是怎么解析php的，会很自信的回答，nginx把请求交给php，php把执行结果返回给nginx然后响应给浏览器。这样的回答，应该是没有任何问题的。但是请求是怎么交给php的呢？当时忙碌在每天的业务代码中，无暇也无心来关注这些。
@@ -277,15 +277,11 @@
 <li>2，当项目需要多个php版本共存的时候该怎么做 ？</li>
 </ul>
 <p>要理解nginx怎么转发请求的，需要了解几个概念，Cgi，FastCgi，这些概念不只局限于nginx-php，linux里的进程通信大都基于此。</p>
-<p>####什么是Cgi,FastCgi，php-fpm ?</p>
-<p>######CGI</p>
-<p>CGI全称是“公共网关接口”(Common Gateway Interface)，HTTP服务器与你的或其它机器上的程序进行“交谈”的一种工具，其程序须运行在网络服务器上。</p>
+<h3 id="什么是Cgi,FastCgi，php-fpm_?">什么是Cgi,FastCgi，php-fpm ?</h3><h4 id="CGI">CGI</h4><p>CGI全称是“公共网关接口”(Common Gateway Interface)，HTTP服务器与你的或其它机器上的程序进行“交谈”的一种工具，其程序须运行在网络服务器上。</p>
 <p>CGI可以用任何一种语言编写，只要这种语言具有标准输入、输出和环境变量。如php,perl,tcl等。</p>
-<p>######FastCGI</p>
-<p>FastCGI像是一个常驻(long-live)型的CGI，它可以一直执行着，只要激活后，不会每次都要花费时间去fork一次（这是CGI最为人诟病的fork-and-execute 模式）。它还支持分布式的运算，即 FastCGI 程序可以在网站服务器以外的主机上执行并且接受来自其它网站服务器来的请求。</p>
+<h4 id="FastCGI">FastCGI</h4><p>FastCGI像是一个常驻(long-live)型的CGI，它可以一直执行着，只要激活后，不会每次都要花费时间去fork一次（这是CGI最为人诟病的fork-and-execute 模式）。它还支持分布式的运算，即 FastCGI 程序可以在网站服务器以外的主机上执行并且接受来自其它网站服务器来的请求。</p>
 <p>FastCGI是语言无关的、可伸缩架构的CGI开放扩展，其主要行为是将CGI解释器进程保持在内存中并因此获得较高的性能。众所周知，CGI解释器的反复加载是CGI性能低下的主要原因，如果CGI解释器保持在内存中并接受FastCGI进程管理器调度，则可以提供良好的性能、伸缩性、Fail- Over特性等等。</p>
-<p>######PHP-FPM</p>
-<p>PHP-FPM是一个PHP FastCGI管理器，是只用于PHP的。</p>
+<h4 id="PHP-FPM">PHP-FPM</h4><p>PHP-FPM是一个PHP FastCGI管理器，是只用于PHP的。</p>
 <p>PHP-FPM其实是PHP源代码的一个补丁，旨在将FastCGI进程管理整合进PHP包中。</p>
 <p>在安装时，./configure的时候带 –enable-fpm 参数即可开启PHP-FPM。</p>
 <hr>
@@ -425,7 +421,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是Cgi,FastCgi，php-fpm_?"><span class="nav-number">1.</span> <span class="nav-text">什么是Cgi,FastCgi，php-fpm ?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CGI"><span class="nav-number">1.1.</span> <span class="nav-text">CGI</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FastCGI"><span class="nav-number">1.2.</span> <span class="nav-text">FastCGI</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PHP-FPM"><span class="nav-number">1.3.</span> <span class="nav-text">PHP-FPM</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
