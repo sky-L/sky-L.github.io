@@ -53,16 +53,15 @@
 
 
 
-<meta name="description" content="备份目录123rsync -av  /var/lib/data   /data  备份  /var/lib/data 目录。－a 包含文件权限  －v 显示输出">
-<meta property="og:type" content="article">
-<meta property="og:title" content="serve">
-<meta property="og:url" content="http://yoursite.com/2016/08/19/serve/index.html">
+<meta name="description" content="行走于浩瀚">
+<meta property="og:type" content="website">
+<meta property="og:title" content="skylee">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="skylee">
-<meta property="og:description" content="备份目录123rsync -av  /var/lib/data   /data  备份  /var/lib/data 目录。－a 包含文件权限  －v 显示输出">
-<meta property="og:updated_time" content="2016-08-19T09:50:56.000Z">
+<meta property="og:description" content="行走于浩瀚">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="serve">
-<meta name="twitter:description" content="备份目录123rsync -av  /var/lib/data   /data  备份  /var/lib/data 目录。－a 包含文件权限  －v 显示输出">
+<meta name="twitter:title" content="skylee">
+<meta name="twitter:description" content="行走于浩瀚">
 
 
 
@@ -74,7 +73,7 @@
   };
 </script>
 
-  <title> serve | skylee </title>
+  <title> skylee </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -95,7 +94,9 @@
 
 
 
-  <div class="container one-column page-post-detail">
+  <div class="container one-column 
+   page-home 
+">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -192,9 +193,15 @@
       <div class="main-inner">
         <div id="content" class="content">
           
+  <section id="posts" class="posts-expand">
 
-  <div id="posts" class="posts-expand">
     
+
+    
+    
+
+    
+      
 
   
   
@@ -214,7 +221,10 @@
             
             
               
-                serve
+                
+                <a class="post-title-link" href="/2015/11/17/excell/" itemprop="url">
+                  PHPExcel常用方法 倒入／导出
+                </a>
               
             
           </h1>
@@ -223,8 +233,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2016-08-19T17:38:02+08:00" content="2016-08-19">
-              2016-08-19
+            <time itemprop="dateCreated" datetime="2015-11-17T19:53:21+08:00" content="2015-11-17">
+              2015-11-17
             </time>
           </span>
 
@@ -233,8 +243,8 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/serve/" itemprop="url" rel="index">
-                    <span itemprop="name">serve</span>
+                  <a href="/categories/常用包/" itemprop="url" rel="index">
+                    <span itemprop="name">常用包</span>
                   </a>
                 </span>
 
@@ -262,8 +272,22 @@
       
 
       
-        <span itemprop="articleBody"><h5 id="备份目录">备份目录</h5><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rsync -av  /var/<span class="class"><span class="keyword">lib</span>/<span class="title">data</span>   /<span class="title">data</span>  </span></span><br><span class="line"></span><br><span class="line">备份  /var/<span class="class"><span class="keyword">lib</span>/<span class="title">data</span> 目录。－<span class="title">a</span> 包含文件权限  －<span class="title">v</span> 显示输出</span></span><br></pre></td></tr></table></figure>
-</span>
+        
+          <span itemprop="articleBody">
+            
+              <h3 id="下载包">下载包</h3><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">composer</span> <span class="preprocessor">require</span> phpoffice/phpexcel</span><br></pre></td></tr></table></figure>
+<h3 id="使用（实例化）">使用（实例化）</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">"vendor/autoload.php"</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">SimpleExcel</span>\<span class="title">SimpleExcel</span>; <span class="comment">//当你的项目中没有用到命名空间不用写这一行</span></span><br><span class="line"><span class="variable">$obj</span> = <span class="keyword">new</span> PHPExcel();</span><br></pre></td></tr></table></figure>
+<p>##导出</p>
+<h3 id="操作sheet1">操作sheet1</h3><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$obj-</span>&gt;setactivesheetindex(<span class="number">0</span>);</span><br><span class="line"><span class="variable">$obj-</span>&gt;getActiveSheet()</span><br><span class="line">         -&gt;setCellValue(<span class="string">'A'</span>，<span class="string">"a"</span>)</span><br><span class="line">         -&gt;setCellValue(<span class="string">'B'</span>, <span class="string">'b'</span>);  </span><br><span class="line"> <span class="variable">$obj-</span>&gt;getActiveSheet()-&gt;setTitle(<span class="string">'这是sheet1'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="操作sheet2">操作sheet2</h3><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$obpe-</span>&gt;createSheet();</span><br><span class="line"><span class="variable">$obj-</span>&gt;getActiveSheet()        </span><br><span class="line">	-&gt;setCellValue(<span class="string">'A'</span>，<span class="string">"a"</span>)         </span><br><span class="line">    -&gt;setCellValue(<span class="string">'B'</span>, <span class="string">'b'</span>);  </span><br><span class="line"><span class="variable">$obj-</span>&gt;getActiveSheet()-&gt;setTitle(<span class="string">'这是sheet2'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="下载">下载</h3><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$objPHPExcel</span><span class="subst">-&gt;</span>setActiveSheetIndex(<span class="number">0</span>); <span class="comment">// opend it on the first sheet</span></span><br><span class="line"> <span class="comment">// Redirect output to a client’s web browser (Excel2007) </span></span><br><span class="line"><span class="keyword">header</span>(<span class="string">'Content-Type:application/vnd.openxmlformatsofficedocument.spreadsheetml.sheet'</span>);</span><br><span class="line"><span class="keyword">header</span>(<span class="string">'Content-Disposition: attachment;filename="问吧数据.xlsx"'</span>);</span><br><span class="line"><span class="keyword">header</span>(<span class="string">'Cache-Control: max-age=0'</span>);</span><br><span class="line"><span class="comment">// If you're serving to IE 9, then the following may be needed</span></span><br><span class="line"><span class="keyword">header</span>(<span class="string">'Cache-Control: max-age=1'</span>);</span><br><span class="line"><span class="comment">// If you're serving to IE over SSL, then the following may be needed</span></span><br><span class="line"><span class="keyword">header</span>(<span class="string">'Expires: Mon, 26 Jul 1997 05:00:00 GMT'</span>); <span class="comment">// Date in the past</span></span><br><span class="line"><span class="keyword">header</span>(<span class="string">'Last-Modified: '</span> <span class="built_in">. </span>gmdate(<span class="string">'D, d M Y H:i:s'</span>) <span class="built_in">. </span><span class="string">' GMT'</span>); <span class="comment">// always modified</span></span><br><span class="line"><span class="keyword">header</span>(<span class="string">'Cache-Control: cache, must-revalidate'</span>); <span class="comment">// HTTP/1.1</span></span><br><span class="line"><span class="keyword">header</span>(<span class="string">'Pragma: public'</span>); <span class="comment">// HTTP/1.0</span></span><br><span class="line"><span class="variable">$objWriter</span> = PHPExcel_IOFactory<span class="tag">::createWriter</span>(<span class="variable">$objPHPExcel</span>, <span class="string">'Excel2007'</span>);</span><br><span class="line"><span class="variable">$objWriter</span><span class="subst">-&gt;</span>save(<span class="string">'php://output'</span>);</span><br><span class="line">exit();</span><br></pre></td></tr></table></figure>
+<p>###excel导入</p>
+<p><code>我觉得这样要方便的多</code></p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="attribute">PHPExcel_IOFactory</span>::load<span class="function"><span class="params">($file)</span>-&gt;</span>getActiveSheet<span class="function"><span class="params">()</span>-&gt;</span>toArray(<span class="literal">null</span>,<span class="literal">true</span>,<span class="literal">true</span>,<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+
+            
+          </span>
+        
       
     </div>
 
@@ -271,36 +295,24 @@
       
 
       
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/08/12/php-trick/" rel="next" title="php奇技淫巧">
-                <i class="fa fa-chevron-left"></i> php奇技淫巧
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/23/container/" rel="prev" title="container实现">
-                container实现 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
 
       
+      
+        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
+    
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
 
 
         </div>
@@ -309,10 +321,6 @@
 
 
         
-  <div class="comments" id="comments">
-    
-  </div>
-
 
       </div>
 
@@ -333,17 +341,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" src="https://avatars1.githubusercontent.com/u/3827764?v=3&s=460" alt="skylee" itemprop="image"/>
           <p class="site-author-name" itemprop="name">skylee</p>
@@ -388,23 +387,6 @@
 
       </section>
 
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc-indicator-top post-toc-indicator">
-            <i class="fa fa-angle-double-up"></i>
-          </div>
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#备份目录"><span class="nav-number">1.</span> <span class="nav-text">备份目录</span></a></li></ol></div>
-            
-          </div>
-          <div class="post-toc-indicator-bottom post-toc-indicator">
-            <i class="fa fa-angle-double-down"></i>
-          </div>
-        </section>
       
 
     </div>
@@ -475,167 +457,6 @@
   <script type="text/javascript" src="/ven/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
-  
-<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
-
-
-<script type="text/javascript" id="sidebar.toc.highlight">
-  $(document).ready(function () {
-    var tocSelector = '.post-toc';
-    var $tocSelector = $(tocSelector);
-    var activeCurrentSelector = '.active-current';
-
-    $tocSelector
-      .on('activate.bs.scrollspy', function () {
-        var $currentActiveElement = $(tocSelector + ' .active').last();
-
-        removeCurrentActiveClass();
-        $currentActiveElement.addClass('active-current');
-
-        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
-      })
-      .on('clear.bs.scrollspy', function () {
-        removeCurrentActiveClass();
-      });
-
-    function removeCurrentActiveClass () {
-      $(tocSelector + ' ' + activeCurrentSelector)
-        .removeClass(activeCurrentSelector.substring(1));
-    }
-
-    function processTOC () {
-      getTOCMaxHeight();
-      toggleTOCOverflowIndicators();
-    }
-
-    function getTOCMaxHeight () {
-      var height = $('.sidebar').height() -
-                   $tocSelector.position().top -
-                   $('.post-toc-indicator-bottom').height();
-
-      $tocSelector.css('height', height);
-
-      return height;
-    }
-
-    function toggleTOCOverflowIndicators () {
-      tocOverflowIndicator(
-        '.post-toc-indicator-top',
-        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
-      );
-
-      tocOverflowIndicator(
-        '.post-toc-indicator-bottom',
-        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
-      )
-    }
-
-    $(document).on('sidebar.motion.complete', function () {
-      processTOC();
-    });
-
-    $('body').scrollspy({ target: tocSelector });
-    $(window).on('resize', function () {
-      if ( $('.sidebar').hasClass('sidebar-active') ) {
-        processTOC();
-      }
-    });
-
-    onScroll($tocSelector);
-
-    function onScroll (element) {
-      element.on('mousewheel DOMMouseScroll', function (event) {
-          var oe = event.originalEvent;
-          var delta = oe.wheelDelta || -oe.detail;
-
-          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
-          event.preventDefault();
-
-          toggleTOCOverflowIndicators();
-      });
-    }
-
-    function tocOverflowIndicator (indicator, action) {
-      var $indicator = $(indicator);
-      var opacity = action === 'show' ? 1 : 0;
-      $indicator.velocity ?
-        $indicator.velocity('stop').velocity({
-          opacity: opacity
-        }, { duration: 100 }) :
-        $indicator.stop().animate({
-          opacity: opacity
-        }, 100);
-    }
-
-  });
-</script>
-
-<script type="text/javascript" id="sidebar.nav">
-  $(document).ready(function () {
-    var html = $('html');
-    var TAB_ANIMATE_DURATION = 200;
-    var hasVelocity = $.isFunction(html.velocity);
-
-    $('.sidebar-nav li').on('click', function () {
-      var item = $(this);
-      var activeTabClassName = 'sidebar-nav-active';
-      var activePanelClassName = 'sidebar-panel-active';
-      if (item.hasClass(activeTabClassName)) {
-        return;
-      }
-
-      var currentTarget = $('.' + activePanelClassName);
-      var target = $('.' + item.data('target'));
-
-      hasVelocity ?
-        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
-          target
-            .velocity('stop')
-            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
-            .addClass(activePanelClassName);
-        }) :
-        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
-          currentTarget.hide();
-          target
-            .stop()
-            .css({'opacity': 0, 'display': 'block'})
-            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
-              currentTarget.removeClass(activePanelClassName);
-              target.addClass(activePanelClassName);
-            });
-        });
-
-      item.siblings().removeClass(activeTabClassName);
-      item.addClass(activeTabClassName);
-    });
-
-    $('.post-toc a').on('click', function (e) {
-      e.preventDefault();
-      var targetSelector = escapeSelector(this.getAttribute('href'));
-      var offset = $(targetSelector).offset().top;
-      hasVelocity ?
-        html.velocity('stop').velocity('scroll', {
-          offset: offset  + 'px',
-          mobileHA: false
-        }) :
-        $('html, body').stop().animate({
-          scrollTop: offset
-        }, 500);
-    });
-
-    // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
-      }
-    };
-  });
-</script>
-
-
 
   <script type="text/javascript" src="/js/bootstrap.js"></script>
 

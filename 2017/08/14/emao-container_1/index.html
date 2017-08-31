@@ -53,28 +53,40 @@
 
 
 
-<meta name="description" content="Quick StartCreate a new post1234hexo n post &quot;title&quot;#写文章hexo g #生成hexo s #预览hexo d #部署 #可与hexo g合并为 hexo d -g
-More info: Writing
-Run server1$ hexo server
-More info: Server
-Generate static files1$ hexo">
+<meta name="description" content="16年的时候整理过一篇IOC的实现原理，在进一步之前可先 查看然后结合laravel再来看IOC的实现，便会有一种 原来是这样 的感受。从而也会对一直不接触的设计模式有根清晰的认识。
+
+先来看几个名词
+
+依赖注入 （dependency injection）
+控制反转 （Inversion Of Control, IOC）
+
+
+依赖注入这是一个很花哨的名词，如很多设计模式一样，但不了解具体实现的时">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo使用">
-<meta property="og:url" content="http://yoursite.com/2016/08/19/hello-world/index.html">
+<meta property="og:title" content="emao-container_1">
+<meta property="og:url" content="http://yoursite.com/2017/08/14/emao-container_1/index.html">
 <meta property="og:site_name" content="skylee">
-<meta property="og:description" content="Quick StartCreate a new post1234hexo n post &quot;title&quot;#写文章hexo g #生成hexo s #预览hexo d #部署 #可与hexo g合并为 hexo d -g
-More info: Writing
-Run server1$ hexo server
-More info: Server
-Generate static files1$ hexo">
-<meta property="og:updated_time" content="2016-08-19T09:58:40.000Z">
+<meta property="og:description" content="16年的时候整理过一篇IOC的实现原理，在进一步之前可先 查看然后结合laravel再来看IOC的实现，便会有一种 原来是这样 的感受。从而也会对一直不接触的设计模式有根清晰的认识。
+
+先来看几个名词
+
+依赖注入 （dependency injection）
+控制反转 （Inversion Of Control, IOC）
+
+
+依赖注入这是一个很花哨的名词，如很多设计模式一样，但不了解具体实现的时">
+<meta property="og:updated_time" content="2017-08-31T06:44:21.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo使用">
-<meta name="twitter:description" content="Quick StartCreate a new post1234hexo n post &quot;title&quot;#写文章hexo g #生成hexo s #预览hexo d #部署 #可与hexo g合并为 hexo d -g
-More info: Writing
-Run server1$ hexo server
-More info: Server
-Generate static files1$ hexo">
+<meta name="twitter:title" content="emao-container_1">
+<meta name="twitter:description" content="16年的时候整理过一篇IOC的实现原理，在进一步之前可先 查看然后结合laravel再来看IOC的实现，便会有一种 原来是这样 的感受。从而也会对一直不接触的设计模式有根清晰的认识。
+
+先来看几个名词
+
+依赖注入 （dependency injection）
+控制反转 （Inversion Of Control, IOC）
+
+
+依赖注入这是一个很花哨的名词，如很多设计模式一样，但不了解具体实现的时">
 
 
 
@@ -86,7 +98,7 @@ Generate static files1$ hexo">
   };
 </script>
 
-  <title> hexo使用 | skylee </title>
+  <title> emao-container_1 | skylee </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -226,7 +238,7 @@ Generate static files1$ hexo">
             
             
               
-                hexo使用
+                emao-container_1
               
             
           </h1>
@@ -235,26 +247,11 @@ Generate static files1$ hexo">
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2016-08-19T17:58:40+08:00" content="2016-08-19">
-              2016-08-19
+            <time itemprop="dateCreated" datetime="2017-08-14T16:14:46+08:00" content="2017-08-14">
+              2017-08-14
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/介绍/" itemprop="url" rel="index">
-                    <span itemprop="name">介绍</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
@@ -274,14 +271,60 @@ Generate static files1$ hexo">
       
 
       
-        <span itemprop="articleBody"><h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">n</span> <span class="keyword">post</span> <span class="string">"title"</span>#写文章</span><br><span class="line">hexo <span class="keyword">g</span> #生成</span><br><span class="line">hexo s #预览</span><br><span class="line">hexo <span class="keyword">d</span> #部署 #可与hexo <span class="keyword">g</span>合并为 hexo <span class="keyword">d</span> -<span class="keyword">g</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <span itemprop="articleBody"><blockquote>
+<p>16年的时候整理过一篇IOC的实现原理，在进一步之前可先 <a href="">查看</a><br>然后结合laravel再来看IOC的实现，便会有一种 <code>原来是这样</code> 的感受。从而也会对一直不接触的设计模式有根清晰的认识。</p>
+</blockquote>
+<p>先来看几个名词</p>
+<ul>
+<li><a href="#DI">依赖注入</a> （dependency injection）</li>
+<li><a href="#IOC">控制反转</a> （Inversion Of Control, IOC）</li>
+</ul>
+<p><a name="DI"></a></p>
+<h3 id="依赖注入">依赖注入</h3><p>这是一个很花哨的名词，如很多设计模式一样，但不了解具体实现的时候就会觉得雨里雾里，不知所云。</p>
+<p>先来看一段简单的代码，也是很「经典」的代码</p>
+<pre><code>class UserController
+{
+    publc function getUserInfo(<span class="variable">$id</span>)
+    {
+           <span class="variable">$model</span> = new UserDao;
+
+           return <span class="variable">$model-</span>&gt;where(<span class="string">'id'</span>, <span class="variable">$id</span>)-&gt;first();
+    }
+}
+</code></pre><p>也许你看出来了，所谓「经典」并不是因为代码有奇妙之处，而是，这样的代码在很多「工程师」的代码里，随处可见。</p>
+<p>这样的代码一个很明显的问题便是，「高级代码」依赖「低级代码」，「低级代码」如果出错，哪「高级代码」就完全用不了。</p>
+<blockquote>
+<p>{tip} 「高级代码」 业务逻辑代码实现，也就是最终呈现给用户的代码。 「低级代码」 数据库操作，文件操作，网络操作等一切为业务服务的代码。 </p>
+</blockquote>
+<p>来看一段改进</p>
+<pre><code>class UserController
+{
+    protected <span class="variable">$user</span>;
+
+    publc function getUserInfo(User <span class="variable">$user</span>, <span class="variable">$id</span>)
+    {         
+           return <span class="variable">$user-</span>&gt;where(<span class="string">'id'</span>, <span class="variable">$id</span>)-&gt;first();
+    }
+}
+</code></pre><p>修改以后的业务代码，不需要知道数据从何而来，只需要知道从一个 <code>User</code> 对象能获取到所需要的数据。</p>
+<p>这样的方式便叫「依赖注入」，「我」依赖你，但并不是离了「你」就不能活。 </p>
+<p><a name="IOC"></a></p>
+<h3 id="控制反转">控制反转</h3><p>控制反转是依赖注入的一种改进，在上面的代码中，「高级代码」 想要获取到「低级代码」数据，必须手动传入「User」，这样当「User」作出修改，哪「高级代码」依赖的部分也要做出修改。</p>
+<p>利用「控制反转」来实现</p>
+<pre><code>class UserController
+{
+    protected <span class="variable">$user</span>;
+
+    publc function getUserInfo(UserInterface <span class="variable">$user</span>, <span class="variable">$id</span>)
+    {         
+           return <span class="variable">$user-</span>&gt;where(<span class="string">'id'</span>, <span class="variable">$id</span>)-&gt;first();
+    }
+}
+</code></pre><p>这里注入的是一个「接口」，「高级代码」不依赖具体的实现，而依赖的是实现的接口。这样无论「低级代码」作出怎样的修改，「高级代码」都不需要做任何修改。</p>
+<blockquote>
+<p>这就是「面向对象」常说的：要面向接口编程，而不是面向实现。</p>
+</blockquote>
+<p>那「高级代码」是如何获得「低级代码」的实现呢？</p>
 </span>
       
     </div>
@@ -293,16 +336,16 @@ Generate static files1$ hexo">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/19/serve/" rel="next" title="serve">
-                <i class="fa fa-chevron-left"></i> serve
+              <a href="/2017/01/03/2017-diary/" rel="next" title="2017_diary">
+                <i class="fa fa-chevron-left"></i> 2017_diary
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/08/23/ioc/" rel="prev" title="ioc实现">
-                ioc实现 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/08/31/hello-world/" rel="prev" title="hexo使用">
+                hexo使用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -371,7 +414,7 @@ Generate static files1$ hexo">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -417,7 +460,7 @@ Generate static files1$ hexo">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick_Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create_a_new_post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run_server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate_static_files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy_to_remote_sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖注入"><span class="nav-number">1.</span> <span class="nav-text">依赖注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制反转"><span class="nav-number">2.</span> <span class="nav-text">控制反转</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -438,7 +481,7 @@ Generate static files1$ hexo">
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="icon-next-heart fa fa-heart"></i>
   </span>

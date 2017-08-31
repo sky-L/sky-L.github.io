@@ -53,16 +53,28 @@
 
 
 
-<meta name="description" content="备份目录123rsync -av  /var/lib/data   /data  备份  /var/lib/data 目录。－a 包含文件权限  －v 显示输出">
+<meta name="description" content="服务器启动
+service rpcbind restartservice nfs restart
+服务端查看  showmount -e  //查看自己共享的
+showmount -a //查看链接的客户端
+客户端查看  showmount -e 192.168.33.10客户端挂载  mount -t nfs 192.168.33.10:/data/www/ /data/www/packages">
 <meta property="og:type" content="article">
-<meta property="og:title" content="serve">
-<meta property="og:url" content="http://yoursite.com/2016/08/19/serve/index.html">
+<meta property="og:title" content="nfs">
+<meta property="og:url" content="http://yoursite.com/2016/12/07/nfs/index.html">
 <meta property="og:site_name" content="skylee">
-<meta property="og:description" content="备份目录123rsync -av  /var/lib/data   /data  备份  /var/lib/data 目录。－a 包含文件权限  －v 显示输出">
-<meta property="og:updated_time" content="2016-08-19T09:50:56.000Z">
+<meta property="og:description" content="服务器启动
+service rpcbind restartservice nfs restart
+服务端查看  showmount -e  //查看自己共享的
+showmount -a //查看链接的客户端
+客户端查看  showmount -e 192.168.33.10客户端挂载  mount -t nfs 192.168.33.10:/data/www/ /data/www/packages">
+<meta property="og:updated_time" content="2016-12-07T03:26:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="serve">
-<meta name="twitter:description" content="备份目录123rsync -av  /var/lib/data   /data  备份  /var/lib/data 目录。－a 包含文件权限  －v 显示输出">
+<meta name="twitter:title" content="nfs">
+<meta name="twitter:description" content="服务器启动
+service rpcbind restartservice nfs restart
+服务端查看  showmount -e  //查看自己共享的
+showmount -a //查看链接的客户端
+客户端查看  showmount -e 192.168.33.10客户端挂载  mount -t nfs 192.168.33.10:/data/www/ /data/www/packages">
 
 
 
@@ -74,7 +86,7 @@
   };
 </script>
 
-  <title> serve | skylee </title>
+  <title> nfs | skylee </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -214,7 +226,7 @@
             
             
               
-                serve
+                nfs
               
             
           </h1>
@@ -223,26 +235,11 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2016-08-19T17:38:02+08:00" content="2016-08-19">
-              2016-08-19
+            <time itemprop="dateCreated" datetime="2016-12-07T11:21:29+08:00" content="2016-12-07">
+              2016-12-07
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/serve/" itemprop="url" rel="index">
-                    <span itemprop="name">serve</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
@@ -262,7 +259,11 @@
       
 
       
-        <span itemprop="articleBody"><h5 id="备份目录">备份目录</h5><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rsync -av  /var/<span class="class"><span class="keyword">lib</span>/<span class="title">data</span>   /<span class="title">data</span>  </span></span><br><span class="line"></span><br><span class="line">备份  /var/<span class="class"><span class="keyword">lib</span>/<span class="title">data</span> 目录。－<span class="title">a</span> 包含文件权限  －<span class="title">v</span> 显示输出</span></span><br></pre></td></tr></table></figure>
+        <span itemprop="articleBody"><p>服务器启动</p>
+<p>service rpcbind restart<br>service nfs restart</p>
+<p>服务端查看  showmount -e  //查看自己共享的</p>
+<p>showmount -a //查看链接的客户端</p>
+<p>客户端查看  showmount -e 192.168.33.10<br>客户端挂载  mount -t nfs 192.168.33.10:/data/www/ /data/www/packages-emao<br>客户端挂载时候遇到<br>mount clntudp_create: RPC: Program not registered<br>执行下  rpc.mountd 就可以了</p>
 </span>
       
     </div>
@@ -274,16 +275,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/12/php-trick/" rel="next" title="php奇技淫巧">
-                <i class="fa fa-chevron-left"></i> php奇技淫巧
+              <a href="/2016/11/16/php-cgi/" rel="next" title="nginx是怎么把请求转发给php的？">
+                <i class="fa fa-chevron-left"></i> nginx是怎么把请求转发给php的？
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/08/23/container/" rel="prev" title="container实现">
-                container实现 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/01/03/2017-diary/" rel="prev" title="2017_diary">
+                2017_diary <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -398,7 +399,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#备份目录"><span class="nav-number">1.</span> <span class="nav-text">备份目录</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

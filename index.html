@@ -199,15 +199,412 @@
 
     
     
+
+    
       
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/31/hello-world/" itemprop="url">
+                  hexo使用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2017-08-31T14:52:01+08:00" content="2017-08-31">
+              2017-08-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/介绍/" itemprop="url" rel="index">
+                    <span itemprop="name">介绍</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
       
-        
-        
-        
       
 
       
+        
+          <span itemprop="articleBody">
+            
+              <h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">n</span> <span class="keyword">post</span> <span class="string">"title"</span>#写文章</span><br><span class="line">hexo <span class="keyword">g</span> #生成</span><br><span class="line">hexo s #预览</span><br><span class="line">hexo <span class="keyword">d</span> #部署 #可与hexo <span class="keyword">g</span>合并为 hexo <span class="keyword">d</span> -<span class="keyword">g</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/14/emao-container_1/" itemprop="url">
+                  emao-container_1
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2017-08-14T16:14:46+08:00" content="2017-08-14">
+              2017-08-14
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <blockquote>
+<p>16年的时候整理过一篇IOC的实现原理，在进一步之前可先 <a href="">查看</a><br>然后结合laravel再来看IOC的实现，便会有一种 <code>原来是这样</code> 的感受。从而也会对一直不接触的设计模式有根清晰的认识。</p>
+</blockquote>
+<p>先来看几个名词</p>
+<ul>
+<li><a href="#DI">依赖注入</a> （dependency injection）</li>
+<li><a href="#IOC">控制反转</a> （Inversion Of Control, IOC）</li>
+</ul>
+<p><a name="DI"></a></p>
+<h3 id="依赖注入">依赖注入</h3><p>这是一个很花哨的名词，如很多设计模式一样，但不了解具体实现的时候就会觉得雨里雾里，不知所云。</p>
+<p>先来看一段简单的代码，也是很「经典」的代码</p>
+<pre><code>class UserController
+{
+    publc function getUserInfo(<span class="variable">$id</span>)
+    {
+           <span class="variable">$model</span> = new UserDao;
+
+           return <span class="variable">$model-</span>&gt;where(<span class="string">'id'</span>, <span class="variable">$id</span>)-&gt;first();
+    }
+}
+</code></pre><p>也许你看出来了，所谓「经典」并不是因为代码有奇妙之处，而是，这样的代码在很多「工程师」的代码里，随处可见。</p>
+<p>这样的代码一个很明显的问题便是，「高级代码」依赖「低级代码」，「低级代码」如果出错，哪「高级代码」就完全用不了。</p>
+<blockquote>
+<p>{tip} 「高级代码」 业务逻辑代码实现，也就是最终呈现给用户的代码。 「低级代码」 数据库操作，文件操作，网络操作等一切为业务服务的代码。 </p>
+</blockquote>
+<p>来看一段改进</p>
+<pre><code>class UserController
+{
+    protected <span class="variable">$user</span>;
+
+    publc function getUserInfo(User <span class="variable">$user</span>, <span class="variable">$id</span>)
+    {         
+           return <span class="variable">$user-</span>&gt;where(<span class="string">'id'</span>, <span class="variable">$id</span>)-&gt;first();
+    }
+}
+</code></pre><p>修改以后的业务代码，不需要知道数据从何而来，只需要知道从一个 <code>User</code> 对象能获取到所需要的数据。</p>
+<p>这样的方式便叫「依赖注入」，「我」依赖你，但并不是离了「你」就不能活。 </p>
+<p><a name="IOC"></a></p>
+<h3 id="控制反转">控制反转</h3><p>控制反转是依赖注入的一种改进，在上面的代码中，「高级代码」 想要获取到「低级代码」数据，必须手动传入「User」，这样当「User」作出修改，哪「高级代码」依赖的部分也要做出修改。</p>
+<p>利用「控制反转」来实现</p>
+<pre><code>class UserController
+{
+    protected <span class="variable">$user</span>;
+
+    publc function getUserInfo(UserInterface <span class="variable">$user</span>, <span class="variable">$id</span>)
+    {         
+           return <span class="variable">$user-</span>&gt;where(<span class="string">'id'</span>, <span class="variable">$id</span>)-&gt;first();
+    }
+}
+</code></pre><p>这里注入的是一个「接口」，「高级代码」不依赖具体的实现，而依赖的是实现的接口。这样无论「低级代码」作出怎样的修改，「高级代码」都不需要做任何修改。</p>
+<blockquote>
+<p>这就是「面向对象」常说的：要面向接口编程，而不是面向实现。</p>
+</blockquote>
+<p>那「高级代码」是如何获得「低级代码」的实现呢？</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/03/2017-diary/" itemprop="url">
+                  2017_diary
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2017-01-03T18:23:13+08:00" content="2017-01-03">
+              2017-01-03
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>一年过去了，竟然没有什么一件事情可以称为记忆深刻。感觉记忆好模糊的一年啊。</p>
+<p>从6月份离开联想到现在，这半年没做过能记得名字的项目。</p>
+<p>没有实质性的改变，想写个年终总结都不知道从何写起。一年过了，跟没过似的。只蹉跎了岁月，却毫无长进。</p>
+<p>但是。该写个规划啊。毕竟2017第一天上班日。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/07/nfs/" itemprop="url">
+                  nfs
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-12-07T11:21:29+08:00" content="2016-12-07">
+              2016-12-07
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>服务器启动</p>
+<p>service rpcbind restart<br>service nfs restart</p>
+<p>服务端查看  showmount -e  //查看自己共享的</p>
+<p>showmount -a //查看链接的客户端</p>
+<p>客户端查看  showmount -e 192.168.33.10<br>客户端挂载  mount -t nfs 192.168.33.10:/data/www/ /data/www/packages-emao<br>客户端挂载时候遇到<br>mount clntudp_create: RPC: Program not registered<br>执行下  rpc.mountd 就可以了</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -348,8 +745,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/08/23/ioc/" itemprop="url">
-                  ioc实现
+                <a class="post-title-link" href="/2016/08/23/container/" itemprop="url">
+                  container实现
                 </a>
               
             
@@ -405,111 +802,8 @@
 <p>纸上得来终觉浅，得知此事需躬行。 </p>
 </blockquote>
 <p>之前看phalcon框架DI的实现方式，觉得很好用，但是由于是c扩展，看不了源码，并不知道是如何实现的，后来看laravel的服务容器，发现是实现了php的SPL接口，然后用这些接口实现的。</p>
-<p>一个典型的DI便是实现了arrayaccess，Demo如下。</p>
+<p>一个典型的「container」便是实现了arrayaccess，Demo如下。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">skylee</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">say</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span>   <span class="keyword">__METHOD__</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span></span><br><span class="line"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">say</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span>   <span class="keyword">__METHOD__</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 容器</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Container</span> <span class="keyword">implements</span> \<span class="title">arrayaccess</span></span><br><span class="line"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$container</span> = <span class="keyword">array</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(array <span class="variable">$array</span> = [])</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="variable">$this</span>-&gt;container = <span class="variable">$array</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__get</span><span class="params">(<span class="variable">$id</span>)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$this</span>-&gt;offsetGet(<span class="variable">$id</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">offsetSet</span><span class="params">(<span class="variable">$offset</span>, <span class="variable">$value</span>)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (is_null(<span class="variable">$offset</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="variable">$this</span>-&gt;container[] = <span class="variable">$value</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="variable">$this</span>-&gt;container[<span class="variable">$offset</span>] = <span class="variable">$value</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">offsetExists</span><span class="params">(<span class="variable">$offset</span>)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">isset</span>(<span class="variable">$this</span>-&gt;container[<span class="variable">$offset</span>]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">offsetUnset</span><span class="params">(<span class="variable">$offset</span>)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">unset</span>(<span class="variable">$this</span>-&gt;container[<span class="variable">$offset</span>]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">offsetGet</span><span class="params">(<span class="variable">$offset</span>)</span></span><br><span class="line">    </span>&#123; </span><br><span class="line">        <span class="variable">$raw</span> = <span class="variable">$this</span>-&gt;container[<span class="variable">$offset</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$this</span>-&gt;container[<span class="variable">$offset</span>] = <span class="variable">$raw</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">register</span><span class="params">(<span class="variable">$Manage</span>)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="variable">$Manage</span>-&gt;register(<span class="variable">$this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// provide</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span>  <span class="title">ServiceProvide</span> </span><br><span class="line"></span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">register</span><span class="params">(Container <span class="variable">$container</span>)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProvideA</span> <span class="keyword">implements</span> <span class="title">ServiceProvide</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">register</span><span class="params">(Container <span class="variable">$container</span>)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="variable">$container</span>[<span class="string">'A'</span>] = <span class="function"><span class="keyword">function</span> <span class="params">()</span></span><br><span class="line">        </span>&#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">new</span> skylee\A;  </span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProvideB</span> <span class="keyword">implements</span> <span class="title">ServiceProvide</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">register</span><span class="params">(Container <span class="variable">$container</span>)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="variable">$container</span>[<span class="string">'B'</span>] = <span class="function"><span class="keyword">function</span> <span class="params">()</span></span><br><span class="line">        </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> skylee\B;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Container</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$service</span> = [</span><br><span class="line">        skylee\ProvideA::class,</span><br><span class="line">        skylee\ProvideB::class</span><br><span class="line">    ];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">parent</span>::__construct();</span><br><span class="line">        </span><br><span class="line">        <span class="variable">$this</span>-&gt;registerProvide();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">registerProvide</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="variable">$this</span>-&gt;service <span class="keyword">as</span> <span class="variable">$v</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="variable">$this</span>-&gt;register(<span class="keyword">new</span> <span class="variable">$v</span>());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$obj</span> = <span class="keyword">new</span> App();</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = <span class="variable">$obj</span>[<span class="string">"A"</span>]-&gt;say();</span><br><span class="line"></span><br><span class="line"><span class="variable">$b</span> = <span class="variable">$obj</span>[<span class="string">"B"</span>]-&gt;say();</span><br><span class="line"></span><br><span class="line">var_dump(<span class="variable">$a</span>);</span><br><span class="line"></span><br><span class="line">var_dump(<span class="variable">$b</span>);</span></span><br></pre></td></tr></table></figure>
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/19/hello-world/" itemprop="url">
-                  hexo使用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-08-19T17:58:40+08:00" content="2016-08-19">
-              2016-08-19
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/介绍/" itemprop="url" rel="index">
-                    <span itemprop="name">介绍</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">n</span> <span class="keyword">post</span> <span class="string">"title"</span>#写文章</span><br><span class="line">hexo <span class="keyword">g</span> #生成</span><br><span class="line">hexo s #预览</span><br><span class="line">hexo <span class="keyword">d</span> #部署 #可与hexo <span class="keyword">g</span>合并为 hexo <span class="keyword">d</span> -<span class="keyword">g</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
             
           </span>
         
@@ -914,114 +1208,14 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/11/17/excell/" itemprop="url">
-                  PHPExcel常用方法 倒入／导出
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-11-17T19:53:21+08:00" content="2015-11-17">
-              2015-11-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/常用包/" itemprop="url" rel="index">
-                    <span itemprop="name">常用包</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <h3 id="下载包">下载包</h3><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">composer</span> <span class="preprocessor">require</span> phpoffice/phpexcel</span><br></pre></td></tr></table></figure>
-<h3 id="使用（实例化）">使用（实例化）</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">"vendor/autoload.php"</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">SimpleExcel</span>\<span class="title">SimpleExcel</span>; <span class="comment">//当你的项目中没有用到命名空间不用写这一行</span></span><br><span class="line"><span class="variable">$obj</span> = <span class="keyword">new</span> PHPExcel();</span><br></pre></td></tr></table></figure>
-<p>##导出</p>
-<h3 id="操作sheet1">操作sheet1</h3><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$obj-</span>&gt;setactivesheetindex(<span class="number">0</span>);</span><br><span class="line"><span class="variable">$obj-</span>&gt;getActiveSheet()</span><br><span class="line">         -&gt;setCellValue(<span class="string">'A'</span>，<span class="string">"a"</span>)</span><br><span class="line">         -&gt;setCellValue(<span class="string">'B'</span>, <span class="string">'b'</span>);  </span><br><span class="line"> <span class="variable">$obj-</span>&gt;getActiveSheet()-&gt;setTitle(<span class="string">'这是sheet1'</span>);</span><br></pre></td></tr></table></figure>
-<h3 id="操作sheet2">操作sheet2</h3><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$obpe-</span>&gt;createSheet();</span><br><span class="line"><span class="variable">$obj-</span>&gt;getActiveSheet()        </span><br><span class="line">	-&gt;setCellValue(<span class="string">'A'</span>，<span class="string">"a"</span>)         </span><br><span class="line">    -&gt;setCellValue(<span class="string">'B'</span>, <span class="string">'b'</span>);  </span><br><span class="line"><span class="variable">$obj-</span>&gt;getActiveSheet()-&gt;setTitle(<span class="string">'这是sheet2'</span>);</span><br></pre></td></tr></table></figure>
-<h3 id="下载">下载</h3><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$objPHPExcel</span><span class="subst">-&gt;</span>setActiveSheetIndex(<span class="number">0</span>); <span class="comment">// opend it on the first sheet</span></span><br><span class="line"> <span class="comment">// Redirect output to a client’s web browser (Excel2007) </span></span><br><span class="line"><span class="keyword">header</span>(<span class="string">'Content-Type:application/vnd.openxmlformatsofficedocument.spreadsheetml.sheet'</span>);</span><br><span class="line"><span class="keyword">header</span>(<span class="string">'Content-Disposition: attachment;filename="问吧数据.xlsx"'</span>);</span><br><span class="line"><span class="keyword">header</span>(<span class="string">'Cache-Control: max-age=0'</span>);</span><br><span class="line"><span class="comment">// If you're serving to IE 9, then the following may be needed</span></span><br><span class="line"><span class="keyword">header</span>(<span class="string">'Cache-Control: max-age=1'</span>);</span><br><span class="line"><span class="comment">// If you're serving to IE over SSL, then the following may be needed</span></span><br><span class="line"><span class="keyword">header</span>(<span class="string">'Expires: Mon, 26 Jul 1997 05:00:00 GMT'</span>); <span class="comment">// Date in the past</span></span><br><span class="line"><span class="keyword">header</span>(<span class="string">'Last-Modified: '</span> <span class="built_in">. </span>gmdate(<span class="string">'D, d M Y H:i:s'</span>) <span class="built_in">. </span><span class="string">' GMT'</span>); <span class="comment">// always modified</span></span><br><span class="line"><span class="keyword">header</span>(<span class="string">'Cache-Control: cache, must-revalidate'</span>); <span class="comment">// HTTP/1.1</span></span><br><span class="line"><span class="keyword">header</span>(<span class="string">'Pragma: public'</span>); <span class="comment">// HTTP/1.0</span></span><br><span class="line"><span class="variable">$objWriter</span> = PHPExcel_IOFactory<span class="tag">::createWriter</span>(<span class="variable">$objPHPExcel</span>, <span class="string">'Excel2007'</span>);</span><br><span class="line"><span class="variable">$objWriter</span><span class="subst">-&gt;</span>save(<span class="string">'php://output'</span>);</span><br><span class="line">exit();</span><br></pre></td></tr></table></figure>
-<p>###excel导入</p>
-<p><code>我觉得这样要方便的多</code></p>
-<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="attribute">PHPExcel_IOFactory</span>::load<span class="function"><span class="params">($file)</span>-&gt;</span>getActiveSheet<span class="function"><span class="params">()</span>-&gt;</span>toArray(<span class="literal">null</span>,<span class="literal">true</span>,<span class="literal">true</span>,<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
         </div>
@@ -1060,7 +1254,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1110,7 +1304,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="icon-next-heart fa fa-heart"></i>
   </span>
