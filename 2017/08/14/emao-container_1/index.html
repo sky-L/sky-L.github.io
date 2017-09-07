@@ -75,7 +75,7 @@
 
 
 依赖注入这是一个很花哨的名词，如很多设计模式一样，但不了解具体实现的时">
-<meta property="og:updated_time" content="2017-08-31T06:44:21.000Z">
+<meta property="og:updated_time" content="2017-09-07T07:43:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="emao-container_1">
 <meta name="twitter:description" content="16年的时候整理过一篇IOC的实现原理，在进一步之前可先 查看然后结合laravel再来看IOC的实现，便会有一种 原来是这样 的感受。从而也会对一直不接触的设计模式有根清晰的认识。
@@ -272,7 +272,7 @@
 
       
         <span itemprop="articleBody"><blockquote>
-<p>16年的时候整理过一篇IOC的实现原理，在进一步之前可先 <a href="">查看</a><br>然后结合laravel再来看IOC的实现，便会有一种 <code>原来是这样</code> 的感受。从而也会对一直不接触的设计模式有根清晰的认识。</p>
+<p>16年的时候整理过一篇IOC的实现原理，在进一步之前可先 <a href="./container.md">查看</a><br>然后结合laravel再来看IOC的实现，便会有一种 <code>原来是这样</code> 的感受。从而也会对一直不接触的设计模式有根清晰的认识。</p>
 </blockquote>
 <p>先来看几个名词</p>
 <ul>
@@ -324,7 +324,81 @@
 <blockquote>
 <p>这就是「面向对象」常说的：要面向接口编程，而不是面向实现。</p>
 </blockquote>
-<p>那「高级代码」是如何获得「低级代码」的实现呢？</p>
+<h3 id="Laravel容器实现">Laravel容器实现</h3><p>容器的终极目标就是解决「依赖」。让「低级代码」的实现，不会出现在「高级代码」的逻辑中。</p>
+<p>通过Laravel的「Route」模块，来分析容器的实现。看 <code>routes/web.php</code> 的内容</p>
+<blockquote>
+<p>以前，每当学习一个框架的时候，首先看的是控制器，因为比较容易看到效果。</p>
+</blockquote>
+<pre><code>Route::<span class="keyword">get</span>('/',funtion(){
+     <span class="function"><span class="keyword">return</span> <span class="title">view</span><span class="params">(<span class="string">'welcome'</span>)</span></span>;
+})
+</code></pre><p>初学者往往会以为这里就是框架的入口—因为我们写的业务代码确实是从这里开始的，从而导致了很多人认为请求直接就到了这里。其实不然。</p>
+<p>既然 <code>web.php</code> 里可以使用 <code>Route::method</code> ，通过 <a href="./container.md">这篇文章</a> 可以知道，既然这里可以使用，必然有地方进行了「绑定」。</p>
+<p>有一个现成的「轮子」，<code>Illuminate\Container</code> （容器） Laravel框架的核心程序便是继承了这个「轮子」，然后把「其他模块」通过「绑定」的方式，组合进了框架。所以 <code>Laravel</code> 的核心代码很少。其中「路由」，「请求」，「响应」等等各个模块都是通过「绑定」的方式组合到一起实现强大的功能。</p>
+<p>在进一步之前，确保你已经看懂了Laravel的文档，<a href="https://d.laravel-china.org/docs/5.5/lifecycle" target="_blank" rel="external">请求的生命周期</a>，很多时候最好的学习资料是框架本身提供的文档。</p>
+<p>Laravel 通过 <code>Illuminate\Container</code> 提供的 <code>bind</code> <code>instance</code> <code>singleton</code>     等等方式进行「注入」到容器里，再通过<code>make</code> 获取到注入的「实例」「匿名函数」「接口实现」等。</p>
+<blockquote>
+<p>本来打算写每个函数的用法，然后发现，无论怎么写，都没有官方文档总结的到位。遂放弃，所以建议多读几遍官方文档吧。</p>
+</blockquote>
+<p>接着上面的 <code>Route</code> 继续看，通过查看 <code>Illuminate\FoundationApplication</code> 可以看到，Laravel通过「Container」注入了路由的「服务提供者」，并把「Container」传给了「服务提供者」</p>
+<pre><code><span class="variable">$this-</span>&gt;register(new RoutingServiceProvider(<span class="variable">$this</span>));
+</code></pre><p>而后由 <code>RoutingServiceProvider</code> 自己注册实现和所需要的依赖。</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">RoutingServiceProvider</span> <span class="keyword">extends</span> <span class="title">ServiceProvider</span>
+</span>{
+    <span class="comment">/**
+     * Register the service provider.
+     *
+     * <span class="doctag">@return</span> void
+     */</span>
+    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">register</span><span class="params">()</span>
+    </span>{
+        <span class="variable">$this</span>-&gt;registerRouter();
+
+        <span class="variable">$this</span>-&gt;registerUrlGenerator();
+
+        <span class="variable">$this</span>-&gt;registerRedirector();
+
+        <span class="variable">$this</span>-&gt;registerPsrRequest();
+
+        <span class="variable">$this</span>-&gt;registerPsrResponse();
+
+        <span class="variable">$this</span>-&gt;registerResponseFactory();
+    }
+</code></pre><p>这时候，我们便可以通过 <code>$app[&#39;route&#39;]</code> 或者 <code>$app-&gt;route</code> 来获取到路由的实现，这会执行「容器」的 <code>make</code> 方法。获取到之前注册的内容。</p>
+<p>而在<code>web.php</code>里没有这样写，这就涉及到另一个概念 <code>Facade</code>。</p>
+<p>看到配置文件 <code>bootstrap/app.php</code></p>
+<pre><code>aliases' =&gt; [
+    <span class="symbol">'Route'</span> =&gt; <span class="type">Illuminate</span>\<span class="type">Support</span>\<span class="type">Facades</span>\<span class="type">Route</span>::<span class="keyword">class</span>
+]
+</code></pre><p>当使用 <code>Route</code> 的实际调用的是 <code>Illuminate\Support\Facades\Route::class</code> , <code>Route::method</code> </p>
+<p>执行的就是 <code>Illuminate\Support\Facades::__callStatic</code></p>
+<pre><code>public static <span class="keyword">function</span> __callStatic(<span class="variable">$method</span>, <span class="variable">$args</span>)
+{
+    <span class="variable">$instance</span> = static::getFacadeRoot();
+
+    if (! <span class="variable">$instance</span>) {
+        throw new RuntimeException(<span class="string">'A facade root has not been set.'</span>);
+    }
+
+    return <span class="variable">$instance-</span>&gt;<span class="variable">$method</span>(...<span class="variable">$args</span>);
+}
+</code></pre><p>其中 </p>
+<pre><code><span class="variable">$instance</span> = static::getFacadeRoot();
+</code></pre><p>最终调用</p>
+<pre><code>protected static <span class="keyword">function</span> resolveFacadeInstance(<span class="variable">$name</span>)
+{
+    if (is_object(<span class="variable">$name</span>)) {
+        return <span class="variable">$name</span>;
+    }
+
+    if (isset(static::<span class="variable">$resolvedInstance</span>[<span class="variable">$name</span>])) {
+        return static::<span class="variable">$resolvedInstance</span>[<span class="variable">$name</span>];
+    }
+
+    return static::<span class="variable">$resolvedInstance</span>[<span class="variable">$name</span>] = static::<span class="variable">$app</span>[<span class="variable">$name</span>];
+}
+</code></pre><p>可以看到，其实就是调用了 <code>$app[name]</code> ;</p>
+<p>到此，通过容器的分析，便可以了解laravel的核心概念了。    </p>
 </span>
       
     </div>
@@ -460,7 +534,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖注入"><span class="nav-number">1.</span> <span class="nav-text">依赖注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制反转"><span class="nav-number">2.</span> <span class="nav-text">控制反转</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖注入"><span class="nav-number">1.</span> <span class="nav-text">依赖注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制反转"><span class="nav-number">2.</span> <span class="nav-text">控制反转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Laravel容器实现"><span class="nav-number">3.</span> <span class="nav-text">Laravel容器实现</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
