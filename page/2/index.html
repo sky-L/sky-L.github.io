@@ -222,6 +222,91 @@
             
               
                 
+                <a class="post-title-link" href="/2015/11/19/gitbook/" itemprop="url">
+                  gitbook的小命令
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-11-19T15:34:32+08:00" content="2015-11-19">
+              2015-11-19
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>已写成了一个可以直接部署到线上的脚本</p>
+<blockquote>
+<p>只适合自己用，嘿嘿，代码在家目录下，每次写完只需要快速唤起终端，执行脚步。可谓方便快捷。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/sh</span><br><span class="line"></span></span><br><span class="line"><span class="built_in">read</span> -p <span class="string">"Please input your book name:"</span> book</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span>  /Users/skylee/Gitbook/Library/import/<span class="variable">$book</span></span><br><span class="line"></span><br><span class="line">gitbook build</span><br><span class="line"></span><br><span class="line">cp -r _book/*  ../on_linebook/<span class="variable">$book</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line"></span><br><span class="line">git add .</span><br><span class="line"></span><br><span class="line">git commit -m <span class="string">'update'</span></span><br><span class="line"></span><br><span class="line">git push origin master</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line"></span><br><span class="line">envoy run book</span><br></pre></td></tr></table></figure>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/11/17/excell/" itemprop="url">
                   PHPExcel常用方法 倒入／导出
                 </a>
@@ -351,7 +436,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-count">12</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
