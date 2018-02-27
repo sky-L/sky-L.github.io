@@ -199,144 +199,15 @@
 
     
     
+      
+      
+        
+        
+        
+      
 
+      
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/02/27/learn-java/" itemprop="url">
-                  learn.java
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2018-02-27T18:21:16+08:00" content="2018-02-27">
-              2018-02-27
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <h2 id="学习第一阶段目标">学习第一阶段目标</h2><h3 id="目标">目标</h3><p> Flume + Hadoop（Java） + Hive + Sqoop 的离线分析系统</p>
-<h3 id="学习顺序">学习顺序</h3><h4 id="了解整体架构">了解整体架构</h4><ul>
-<li>离线分析系统的整体架构 </li>
-<li>每个部分数据传输流程</li>
-</ul>
-<h5 id="参考文章">参考文章</h5><ul>
-<li><a href="http://blog.csdn.net/ymh198816" target="_blank" rel="external">Flume+Spark+Hive+Spark SQL离线分析系统</a></li>
-<li><a href="http://blog.csdn.net/ymh198816/article/details/51998085" target="_blank" rel="external">Flume+Kafka+Storm+Redis实时分析系统基本架构</a></li>
-<li><a href="http://blog.csdn.net/ymh198816/article/details/51540715" target="_blank" rel="external">Flume+Hadoop+Hive的离线分析系统基本架</a></li>
-<li><a href="http://tech.youzan.com/you-zan-tong-ri-zhi-ping-tai-chu-tan/" target="_blank" rel="external">有赞统一日志平台初探</a></li>
-</ul>
-<h4 id="Java_基本语法">Java 基本语法</h4><ul>
-<li>基本数据类型 </li>
-<li>面向对象 <a href="https://www.imooc.com/search/?words=java入门第一季" target="_blank" rel="external">资料</a></li>
-</ul>
-<h5 id="验收方式">验收方式</h5><ul>
-<li>能看懂 Hadoop 文档自带的 WordCount 应用的代码。</li>
-</ul>
-<h4 id="Hadoop">Hadoop</h4><ul>
-<li>HDFS 分布式文件系统</li>
-<li>配置单点，集群 熟练理解文档自带的 WordCount 应用。<a href="https://hadoop.apache.org/docs/r1.0.4/cn/quickstart.html#Local" target="_blank" rel="external">1.x中文</a> ， <a href="http://hadoop.apache.org/docs/r2.9.0/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html" target="_blank" rel="external">2.x</a></li>
-<li>理解示例 WordCount 使用到的 Hadoop 接口。学会查看 <a href="http://hadoop.apache.org/docs/r2.9.0/api/allclasses-noframe.html" target="_blank" rel="external">Hadoop类库</a></li>
-</ul>
-<h5 id="验收方式-1">验收方式</h5><ul>
-<li>把淘车猫的 access_log 上传到 Hadoop 的文件系统中。</li>
-<li>能使用 Hadoop 的文件系统常用命令。文件的创建，移动等等</li>
-</ul>
-<h4 id="Java_接口函数">Java 接口函数</h4><ul>
-<li>集合框架 <a href="https://www.imooc.com/search/?words=java入门第三季" target="_blank" rel="external">资料</a></li>
-<li>处理各种字符串的对象函数 找一些小项目源码多练习</li>
-<li>ArrayList, HashSet, Map 等数据结构</li>
-</ul>
-<h5 id="验收方式-2">验收方式</h5><ul>
-<li>能看到 Hadoop 文档自带应用 WordCount 2.0 版本</li>
-<li>能使用集合框架写出学习资料里最后的 扑克 应用。</li>
-</ul>
-<h4 id="Hive">Hive</h4><ul>
-<li>HiveSql 学习</li>
-</ul>
-<h5 id="验收方式-3">验收方式</h5><ul>
-<li>可以通过文本数据创建 HiveSql 表，并可以做排序等操作</li>
-<li>能实现 <a href="http://blog.csdn.net/ymh198816/article/details/51540715" target="_blank" rel="external">这里</a> 的例子</li>
-</ul>
-<h4 id="Sqoop">Sqoop</h4><ul>
-<li>具体学习的内容还没看</li>
-</ul>
-<h5 id="验收方式-4">验收方式</h5><ul>
-<li>能把 Hive 数据导入进 Mysql。</li>
-</ul>
-<h4 id="Flume">Flume</h4><ul>
-<li>Flume 配置</li>
-</ul>
-<h5 id="验收方式-5">验收方式</h5><ul>
-<li>可以把 access.log 文件，导入进 Hadoop 文件系统。</li>
-</ul>
-<h4 id="综合_Demo，统计_Uv，Pv_（1周）">综合 Demo，统计 Uv，Pv （1周）</h4><ul>
-<li>统计分析淘车猫的 access_log</li>
-</ul>
-<h2 id="学习第二阶段目标">学习第二阶段目标</h2><h3 id="to_be_continue_…">to be continue …</h3>
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
 
     
       
