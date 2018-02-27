@@ -53,28 +53,43 @@
 
 
 
-<meta name="description" content="已写成了一个可以直接部署到线上的脚本
+<meta name="description" content="学习第一阶段目标目标 Flume + Hadoop（Java） + Hive + Sqoop 的离线分析系统
+学习顺序了解整体架构
+离线分析系统的整体架构 
+每个部分数据传输流程
 
-只适合自己用，嘿嘿，代码在家目录下，每次写完只需要快速唤起终端，执行脚步。可谓方便快捷。
-
-123456789101112131415161718192021#!/bin/shread -p &quot;Please input your book name:&quot; bookcd  /Users/skylee/Gitbook/Library/import/$bookgit">
+参考文章
+Flume+Spark+Hive+Spark SQL离线分析系统
+Flume+Kafka+Storm+Redis实时分析系统基本架构
+Flume+Hadoop+Hive的离线分析系统基本架
+有赞统一日志平台初">
 <meta property="og:type" content="article">
-<meta property="og:title" content="gitbook的小命令">
-<meta property="og:url" content="http://yoursite.com/2015/11/19/gitbook/index.html">
+<meta property="og:title" content="learn.java">
+<meta property="og:url" content="http://yoursite.com/2018/02/27/learn-java/index.html">
 <meta property="og:site_name" content="skylee">
-<meta property="og:description" content="已写成了一个可以直接部署到线上的脚本
+<meta property="og:description" content="学习第一阶段目标目标 Flume + Hadoop（Java） + Hive + Sqoop 的离线分析系统
+学习顺序了解整体架构
+离线分析系统的整体架构 
+每个部分数据传输流程
 
-只适合自己用，嘿嘿，代码在家目录下，每次写完只需要快速唤起终端，执行脚步。可谓方便快捷。
-
-123456789101112131415161718192021#!/bin/shread -p &quot;Please input your book name:&quot; bookcd  /Users/skylee/Gitbook/Library/import/$bookgit">
-<meta property="og:updated_time" content="2015-12-23T13:12:38.000Z">
+参考文章
+Flume+Spark+Hive+Spark SQL离线分析系统
+Flume+Kafka+Storm+Redis实时分析系统基本架构
+Flume+Hadoop+Hive的离线分析系统基本架
+有赞统一日志平台初">
+<meta property="og:updated_time" content="2018-02-27T10:21:42.572Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="gitbook的小命令">
-<meta name="twitter:description" content="已写成了一个可以直接部署到线上的脚本
+<meta name="twitter:title" content="learn.java">
+<meta name="twitter:description" content="学习第一阶段目标目标 Flume + Hadoop（Java） + Hive + Sqoop 的离线分析系统
+学习顺序了解整体架构
+离线分析系统的整体架构 
+每个部分数据传输流程
 
-只适合自己用，嘿嘿，代码在家目录下，每次写完只需要快速唤起终端，执行脚步。可谓方便快捷。
-
-123456789101112131415161718192021#!/bin/shread -p &quot;Please input your book name:&quot; bookcd  /Users/skylee/Gitbook/Library/import/$bookgit">
+参考文章
+Flume+Spark+Hive+Spark SQL离线分析系统
+Flume+Kafka+Storm+Redis实时分析系统基本架构
+Flume+Hadoop+Hive的离线分析系统基本架
+有赞统一日志平台初">
 
 
 
@@ -86,7 +101,7 @@
   };
 </script>
 
-  <title> gitbook的小命令 | skylee </title>
+  <title> learn.java | skylee </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -226,7 +241,7 @@
             
             
               
-                gitbook的小命令
+                learn.java
               
             
           </h1>
@@ -235,8 +250,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-11-19T15:34:32+08:00" content="2015-11-19">
-              2015-11-19
+            <time itemprop="dateCreated" datetime="2018-02-27T18:21:16+08:00" content="2018-02-27">
+              2018-02-27
             </time>
           </span>
 
@@ -259,12 +274,65 @@
       
 
       
-        <span itemprop="articleBody"><p>已写成了一个可以直接部署到线上的脚本</p>
-<blockquote>
-<p>只适合自己用，嘿嘿，代码在家目录下，每次写完只需要快速唤起终端，执行脚步。可谓方便快捷。</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/sh</span><br><span class="line"></span></span><br><span class="line"><span class="built_in">read</span> -p <span class="string">"Please input your book name:"</span> book</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span>  /Users/skylee/Gitbook/Library/import/<span class="variable">$book</span></span><br><span class="line"></span><br><span class="line">gitbook build</span><br><span class="line"></span><br><span class="line">cp -r _book/*  ../on_linebook/<span class="variable">$book</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line"></span><br><span class="line">git add .</span><br><span class="line"></span><br><span class="line">git commit -m <span class="string">'update'</span></span><br><span class="line"></span><br><span class="line">git push origin master</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line"></span><br><span class="line">envoy run book</span><br></pre></td></tr></table></figure>
-</span>
+        <span itemprop="articleBody"><h2 id="学习第一阶段目标">学习第一阶段目标</h2><h3 id="目标">目标</h3><p> Flume + Hadoop（Java） + Hive + Sqoop 的离线分析系统</p>
+<h3 id="学习顺序">学习顺序</h3><h4 id="了解整体架构">了解整体架构</h4><ul>
+<li>离线分析系统的整体架构 </li>
+<li>每个部分数据传输流程</li>
+</ul>
+<h5 id="参考文章">参考文章</h5><ul>
+<li><a href="http://blog.csdn.net/ymh198816" target="_blank" rel="external">Flume+Spark+Hive+Spark SQL离线分析系统</a></li>
+<li><a href="http://blog.csdn.net/ymh198816/article/details/51998085" target="_blank" rel="external">Flume+Kafka+Storm+Redis实时分析系统基本架构</a></li>
+<li><a href="http://blog.csdn.net/ymh198816/article/details/51540715" target="_blank" rel="external">Flume+Hadoop+Hive的离线分析系统基本架</a></li>
+<li><a href="http://tech.youzan.com/you-zan-tong-ri-zhi-ping-tai-chu-tan/" target="_blank" rel="external">有赞统一日志平台初探</a></li>
+</ul>
+<h4 id="Java_基本语法">Java 基本语法</h4><ul>
+<li>基本数据类型 </li>
+<li>面向对象 <a href="https://www.imooc.com/search/?words=java入门第一季" target="_blank" rel="external">资料</a></li>
+</ul>
+<h5 id="验收方式">验收方式</h5><ul>
+<li>能看懂 Hadoop 文档自带的 WordCount 应用的代码。</li>
+</ul>
+<h4 id="Hadoop">Hadoop</h4><ul>
+<li>HDFS 分布式文件系统</li>
+<li>配置单点，集群 熟练理解文档自带的 WordCount 应用。<a href="https://hadoop.apache.org/docs/r1.0.4/cn/quickstart.html#Local" target="_blank" rel="external">1.x中文</a> ， <a href="http://hadoop.apache.org/docs/r2.9.0/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html" target="_blank" rel="external">2.x</a></li>
+<li>理解示例 WordCount 使用到的 Hadoop 接口。学会查看 <a href="http://hadoop.apache.org/docs/r2.9.0/api/allclasses-noframe.html" target="_blank" rel="external">Hadoop类库</a></li>
+</ul>
+<h5 id="验收方式-1">验收方式</h5><ul>
+<li>把淘车猫的 access_log 上传到 Hadoop 的文件系统中。</li>
+<li>能使用 Hadoop 的文件系统常用命令。文件的创建，移动等等</li>
+</ul>
+<h4 id="Java_接口函数">Java 接口函数</h4><ul>
+<li>集合框架 <a href="https://www.imooc.com/search/?words=java入门第三季" target="_blank" rel="external">资料</a></li>
+<li>处理各种字符串的对象函数 找一些小项目源码多练习</li>
+<li>ArrayList, HashSet, Map 等数据结构</li>
+</ul>
+<h5 id="验收方式-2">验收方式</h5><ul>
+<li>能看到 Hadoop 文档自带应用 WordCount 2.0 版本</li>
+<li>能使用集合框架写出学习资料里最后的 扑克 应用。</li>
+</ul>
+<h4 id="Hive">Hive</h4><ul>
+<li>HiveSql 学习</li>
+</ul>
+<h5 id="验收方式-3">验收方式</h5><ul>
+<li>可以通过文本数据创建 HiveSql 表，并可以做排序等操作</li>
+<li>能实现 <a href="http://blog.csdn.net/ymh198816/article/details/51540715" target="_blank" rel="external">这里</a> 的例子</li>
+</ul>
+<h4 id="Sqoop">Sqoop</h4><ul>
+<li>具体学习的内容还没看</li>
+</ul>
+<h5 id="验收方式-4">验收方式</h5><ul>
+<li>能把 Hive 数据导入进 Mysql。</li>
+</ul>
+<h4 id="Flume">Flume</h4><ul>
+<li>Flume 配置</li>
+</ul>
+<h5 id="验收方式-5">验收方式</h5><ul>
+<li>可以把 access.log 文件，导入进 Hadoop 文件系统。</li>
+</ul>
+<h4 id="综合_Demo，统计_Uv，Pv_（1周）">综合 Demo，统计 Uv，Pv （1周）</h4><ul>
+<li>统计分析淘车猫的 access_log</li>
+</ul>
+<h2 id="学习第二阶段目标">学习第二阶段目标</h2><h3 id="to_be_continue_…">to be continue …</h3></span>
       
     </div>
 
@@ -275,17 +343,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/11/17/excell/" rel="next" title="PHPExcel常用方法 倒入／导出">
-                <i class="fa fa-chevron-left"></i> PHPExcel常用方法 倒入／导出
+              <a href="/2018/02/27/Hadoop-install/" rel="next" title="Hadoop install">
+                <i class="fa fa-chevron-left"></i> Hadoop install
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/01/21/diary/" rel="prev" title="一句过了半月">
-                一句过了半月 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -399,7 +463,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#学习第一阶段目标"><span class="nav-number">1.</span> <span class="nav-text">学习第一阶段目标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目标"><span class="nav-number">1.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#学习顺序"><span class="nav-number">1.2.</span> <span class="nav-text">学习顺序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#了解整体架构"><span class="nav-number">1.2.1.</span> <span class="nav-text">了解整体架构</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#参考文章"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">参考文章</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Java_基本语法"><span class="nav-number">1.2.2.</span> <span class="nav-text">Java 基本语法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#验收方式"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">验收方式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hadoop"><span class="nav-number">1.2.3.</span> <span class="nav-text">Hadoop</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#验收方式-1"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">验收方式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Java_接口函数"><span class="nav-number">1.2.4.</span> <span class="nav-text">Java 接口函数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#验收方式-2"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">验收方式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hive"><span class="nav-number">1.2.5.</span> <span class="nav-text">Hive</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#验收方式-3"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">验收方式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sqoop"><span class="nav-number">1.2.6.</span> <span class="nav-text">Sqoop</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#验收方式-4"><span class="nav-number">1.2.6.1.</span> <span class="nav-text">验收方式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Flume"><span class="nav-number">1.2.7.</span> <span class="nav-text">Flume</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#验收方式-5"><span class="nav-number">1.2.7.1.</span> <span class="nav-text">验收方式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#综合_Demo，统计_Uv，Pv_（1周）"><span class="nav-number">1.2.8.</span> <span class="nav-text">综合 Demo，统计 Uv，Pv （1周）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#学习第二阶段目标"><span class="nav-number">2.</span> <span class="nav-text">学习第二阶段目标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#to_be_continue_…"><span class="nav-number">2.1.</span> <span class="nav-text">to be continue …</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
