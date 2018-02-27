@@ -375,8 +375,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/08/31/hello-world/" itemprop="url">
-                  hexo使用
+                <a class="post-title-link" href="/2017/12/01/learn-java/" itemprop="url">
+                  learn.java
                 </a>
               
             
@@ -386,26 +386,11 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2017-08-31T14:52:01+08:00" content="2017-08-31">
-              2017-08-31
+            <time itemprop="dateCreated" datetime="2017-12-01T18:21:16+08:00" content="2017-12-01">
+              2017-12-01
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/介绍/" itemprop="url" rel="index">
-                    <span itemprop="name">介绍</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
@@ -428,15 +413,65 @@
         
           <span itemprop="articleBody">
             
-              <h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">n</span> <span class="keyword">post</span> <span class="string">"title"</span>#写文章</span><br><span class="line">hexo <span class="keyword">g</span> #生成</span><br><span class="line">hexo s #预览</span><br><span class="line">hexo <span class="keyword">d</span> #部署 #可与hexo <span class="keyword">g</span>合并为 hexo <span class="keyword">d</span> -<span class="keyword">g</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
+              <h2 id="学习第一阶段目标">学习第一阶段目标</h2><h3 id="目标">目标</h3><p> Flume + Hadoop（Java） + Hive + Sqoop 的离线分析系统</p>
+<h3 id="学习顺序">学习顺序</h3><h4 id="了解整体架构">了解整体架构</h4><ul>
+<li>离线分析系统的整体架构 </li>
+<li>每个部分数据传输流程</li>
+</ul>
+<h5 id="参考文章">参考文章</h5><ul>
+<li><a href="http://blog.csdn.net/ymh198816" target="_blank" rel="external">Flume+Spark+Hive+Spark SQL离线分析系统</a></li>
+<li><a href="http://blog.csdn.net/ymh198816/article/details/51998085" target="_blank" rel="external">Flume+Kafka+Storm+Redis实时分析系统基本架构</a></li>
+<li><a href="http://blog.csdn.net/ymh198816/article/details/51540715" target="_blank" rel="external">Flume+Hadoop+Hive的离线分析系统基本架</a></li>
+<li><a href="http://tech.youzan.com/you-zan-tong-ri-zhi-ping-tai-chu-tan/" target="_blank" rel="external">有赞统一日志平台初探</a></li>
+</ul>
+<h4 id="Java_基本语法">Java 基本语法</h4><ul>
+<li>基本数据类型 </li>
+<li>面向对象 <a href="https://www.imooc.com/search/?words=java入门第一季" target="_blank" rel="external">资料</a></li>
+</ul>
+<h5 id="验收方式">验收方式</h5><ul>
+<li>能看懂 Hadoop 文档自带的 WordCount 应用的代码。</li>
+</ul>
+<h4 id="Hadoop">Hadoop</h4><ul>
+<li>HDFS 分布式文件系统</li>
+<li>配置单点，集群 熟练理解文档自带的 WordCount 应用。<a href="https://hadoop.apache.org/docs/r1.0.4/cn/quickstart.html#Local" target="_blank" rel="external">1.x中文</a> ， <a href="http://hadoop.apache.org/docs/r2.9.0/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html" target="_blank" rel="external">2.x</a></li>
+<li>理解示例 WordCount 使用到的 Hadoop 接口。学会查看 <a href="http://hadoop.apache.org/docs/r2.9.0/api/allclasses-noframe.html" target="_blank" rel="external">Hadoop类库</a></li>
+</ul>
+<h5 id="验收方式-1">验收方式</h5><ul>
+<li>把淘车猫的 access_log 上传到 Hadoop 的文件系统中。</li>
+<li>能使用 Hadoop 的文件系统常用命令。文件的创建，移动等等</li>
+</ul>
+<h4 id="Java_接口函数">Java 接口函数</h4><ul>
+<li>集合框架 <a href="https://www.imooc.com/search/?words=java入门第三季" target="_blank" rel="external">资料</a></li>
+<li>处理各种字符串的对象函数 找一些小项目源码多练习</li>
+<li>ArrayList, HashSet, Map 等数据结构</li>
+</ul>
+<h5 id="验收方式-2">验收方式</h5><ul>
+<li>能看到 Hadoop 文档自带应用 WordCount 2.0 版本</li>
+<li>能使用集合框架写出学习资料里最后的 扑克 应用。</li>
+</ul>
+<h4 id="Hive">Hive</h4><ul>
+<li>HiveSql 学习</li>
+</ul>
+<h5 id="验收方式-3">验收方式</h5><ul>
+<li>可以通过文本数据创建 HiveSql 表，并可以做排序等操作</li>
+<li>能实现 <a href="http://blog.csdn.net/ymh198816/article/details/51540715" target="_blank" rel="external">这里</a> 的例子</li>
+</ul>
+<h4 id="Sqoop">Sqoop</h4><ul>
+<li>具体学习的内容还没看</li>
+</ul>
+<h5 id="验收方式-4">验收方式</h5><ul>
+<li>能把 Hive 数据导入进 Mysql。</li>
+</ul>
+<h4 id="Flume">Flume</h4><ul>
+<li>Flume 配置</li>
+</ul>
+<h5 id="验收方式-5">验收方式</h5><ul>
+<li>可以把 access.log 文件，导入进 Hadoop 文件系统。</li>
+</ul>
+<h4 id="综合_Demo，统计_Uv，Pv_（1周）">综合 Demo，统计 Uv，Pv （1周）</h4><ul>
+<li>统计分析淘车猫的 access_log</li>
+</ul>
+<h2 id="学习第二阶段目标">学习第二阶段目标</h2><h3 id="to_be_continue_…">to be continue …</h3>
             
           </span>
         
@@ -1226,6 +1261,110 @@
 <h4 id="XML字符串转数组">XML字符串转数组</h4><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$xmlObj</span> = simplexml_load_string(<span class="variable">$xmlStr</span>);</span><br><span class="line"><span class="variable">$xmlArr</span> = json_decode(json_encode(<span class="variable">$xmlObj</span>) , <span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 论如何用最好的编程语言获得当天零点的UNIX时间戳</span></span><br><span class="line"><span class="keyword">echo</span> strtotime(<span class="string">"today midnight"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//处理数据</span></span><br><span class="line"><span class="variable">$_POST</span>=array_map(<span class="string">'addslashes'</span>,<span class="variable">$_POST</span>);</span><br></pre></td></tr></table></figure>
 <h4 id="A_better_way_to_do_a_lot_of_IF_statements:">A better way to do a lot of IF statements:</h4><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span>(TRUE)&#123;</span><br><span class="line">  case email_is_valid(<span class="variable">$email</span>):</span><br><span class="line">    // Do something.</span><br><span class="line">    break;</span><br><span class="line">  case username_is_valid(<span class="variable">$user</span>):</span><br><span class="line">    // Do stuff.</span><br><span class="line">    break;</span><br><span class="line">  case pass_too_short(<span class="variable">$pass</span>) &amp;&amp; pass_not_save(<span class="variable">$pass</span>):</span><br><span class="line">    // Other stuff.</span><br><span class="line">    break;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/21/diary/" itemprop="url">
+                  一句过了半月
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-21T20:30:00+08:00" content="2016-01-21">
+              2016-01-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/常用包/" itemprop="url" rel="index">
+                    <span itemprop="name">常用包</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>转眼都月半了，想着年前的时候还买了一个日记本，每一页都写着日期，以为这样就能多纪录一些东西呢，然后大半个月下来却是寥寥无几。还买了一份字帖，想来练字，一样效果甚微，没有坚持下来。至于跑步每周能跑2到3次，这个还算好一点吧。</p>
+<p>今年的工作目标没有达成，挺遗憾吧，然而这都是无可奈何的事，就由它去吧。</p>
+<p>成长路上运气占了很大的部分吧，从上学到毕业找工作，一切都很顺利，没经历过什么坎坷，或者换句话说，该来的总会来的，等到了那个时间也就得到了该有的东西。会娶妻生子，会活很长的一段时间。</p>
+<p>刚到大一的时候，觉得3年是很长的时间了，工作后才发现3年也就转眼间。</p>
+<p>在公司已经是个老人了，身边都是90后，甚至95后。</p>
+<p>早上出门的时候飘起了雪，想来是这个冬天最后一场雪吧。</p>
+<p>几周前在多看买的一本书，《让孩子心悦诚服》，到现在还是没有看完，最近竟然玩起了游戏，而且停不下来啊，感觉又回到了中学的时候，无知的痴迷起来，耗费了很多闲暇的时间。要多花点时间读书了。</p>
+<p>​                               </p>
+<p>​    </p>
 
             
           </span>
