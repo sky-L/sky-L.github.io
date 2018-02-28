@@ -199,15 +199,97 @@
 
     
     
+
+    
       
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/02/28/flume-config/" itemprop="url">
+                  flume config
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2018-02-28T18:56:06+08:00" content="2018-02-28">
+              2018-02-28
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
       
-        
-        
-        
       
 
       
-    
+        
+          <span itemprop="articleBody">
+            
+              <h2 id="FLume">FLume</h2><h4 id="下载">下载</h4><p>下载 bin 包，下载就可使用。绿色软件。</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span>/<span class="regexp">/www.apache.org/dyn</span><span class="regexp">/closer.lua/flume</span><span class="regexp">/1.8.0/apache</span>-flume-<span class="number">1.8</span>.<span class="number">0</span>-bin.tar.gz</span><br></pre></td></tr></table></figure>
+<h4 id="快速开始_文档">快速开始 <a href="https://cwiki.apache.org//confluence/display/FLUME/Getting+Started" target="_blank" rel="external">文档</a></h4><h4 id="完整文档_点击">完整文档 <a href="http://flume.apache.org/FlumeUserGuide.html#configuring-individual-components" target="_blank" rel="external">点击</a></h4><h4 id="参考">参考</h4><ul>
+<li><a href="http://blog.javachen.com/2014/07/22/flume-ng.html" target="_blank" rel="external">实战</a></li>
+<li><a href="http://blog.csdn.net/ymh198816/article/details/51540715" target="_blank" rel="external">flume</a></li>
+</ul>
+<h4 id="Troubleshooting">Troubleshooting</h4><h5 id="使用Flume拉取到HDFS中的文件格式错乱">使用Flume拉取到HDFS中的文件格式错乱</h5><p>这是因为HDFS Sink的配置中，hdfs.writeFormat属性默认为 “Writable” 会将原先的文件的内容序列化成HDFS的格式，应该手动设置成 hdfs.writeFormat=”text”; 并且 hdfs.fileType 默认是 “SequenceFile” 类型的，是将所有 event 拼成一行，应该该手动设置成 hdfs.fileType=”DataStream”，这样就可以是一行一个event，与原文件格式保持一致</p>
+<blockquote>
+<p>所以啊，要多看文档啊。 有时候英文文档感觉描叙不到位。等我找时间翻译下这个文档。</p>
+</blockquote>
+<h5 id="后台启动">后台启动</h5><p>可以用 <code>nohup bin/flume-ng agent -n agent -c conf -f conf/flume-conf.properties &gt; /dev/null &amp;</code><br>但是生产环境还是用  <a href="http://supervisord.org/index.html" target="_blank" rel="external">supervisor</a> 来管理吧</p>
+<h4 id="实战1_配置本机的_HDFS-">实战1 配置本机的 HDFS.</h4><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># 命名</span></span><br><span class="line">tcm.channels = ch-tcm</span><br><span class="line">tcm.sources = src-tcm</span><br><span class="line">tcm.sinks = sink-tcm</span><br><span class="line"><span class="preprocessor"># 配置 agent 的 channels </span></span><br><span class="line">tcm.channels.ch-tcm.type = file</span><br><span class="line">tcm.channels.ch-tcm.checkpointDir = /channels/checkpoint</span><br><span class="line">tcm.channels.ch-tcm.dataDirs = /channels/data</span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># 配置 agent 的 sources</span></span><br><span class="line">tcm.sources.src-tcm.type = spooldir</span><br><span class="line">tcm.sources.src-tcm.spoolDir = /home/wwwroot/hadoop/flume-<span class="number">1.8</span><span class="number">.0</span>/input/sources</span><br><span class="line"> </span><br><span class="line"><span class="preprocessor"># 配置 sinks</span></span><br><span class="line">tcm.sinks.sink-tcm.type = hdfs</span><br><span class="line">tcm.sinks.sink-tcm.hdfs.path = /hadoop-<span class="number">2.9</span><span class="number">.0</span>/flume/%y-%m-%d</span><br><span class="line"><span class="preprocessor"># 使用本机时间配置</span></span><br><span class="line">tcm.sinks.sink-tcm.hdfs.useLocalTimeStamp = <span class="literal">true</span></span><br><span class="line">tcm.sinks.sink-tcm.hdfs.inUsePrefix = .</span><br><span class="line"><span class="preprocessor"># 保留源文件的格式</span></span><br><span class="line">tcm.sinks.sink-tcm.hdfs.writeFormat = Text</span><br><span class="line"><span class="preprocessor"># 配置成一行一个 event 认是“SequenceFile”类型的，是将所有event拼成一行，应该该手动设置成hdfs.fileType=“DataStream”，这样就可以是一行一个event，</span></span><br><span class="line">与原文件格式保持一致</span><br><span class="line">tcm.sinks.sink-tcm.hdfs.fileType = DataStream</span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># 通过 channel 链接 sources 和 sinks</span></span><br><span class="line">tcm.sources.src-tcm.channels = ch-tcm</span><br><span class="line">tcm.sinks.sink-tcm.channel = ch-tcm</span><br></pre></td></tr></table></figure>
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -1282,110 +1364,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/21/diary/" itemprop="url">
-                  一句过了半月
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-01-21T20:30:00+08:00" content="2016-01-21">
-              2016-01-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/常用包/" itemprop="url" rel="index">
-                    <span itemprop="name">常用包</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>转眼都月半了，想着年前的时候还买了一个日记本，每一页都写着日期，以为这样就能多纪录一些东西呢，然后大半个月下来却是寥寥无几。还买了一份字帖，想来练字，一样效果甚微，没有坚持下来。至于跑步每周能跑2到3次，这个还算好一点吧。</p>
-<p>今年的工作目标没有达成，挺遗憾吧，然而这都是无可奈何的事，就由它去吧。</p>
-<p>成长路上运气占了很大的部分吧，从上学到毕业找工作，一切都很顺利，没经历过什么坎坷，或者换句话说，该来的总会来的，等到了那个时间也就得到了该有的东西。会娶妻生子，会活很长的一段时间。</p>
-<p>刚到大一的时候，觉得3年是很长的时间了，工作后才发现3年也就转眼间。</p>
-<p>在公司已经是个老人了，身边都是90后，甚至95后。</p>
-<p>早上出门的时候飘起了雪，想来是这个冬天最后一场雪吧。</p>
-<p>几周前在多看买的一本书，《让孩子心悦诚服》，到现在还是没有看完，最近竟然玩起了游戏，而且停不下来啊，感觉又回到了中学的时候，无知的痴迷起来，耗费了很多闲暇的时间。要多花点时间读书了。</p>
-<p>​                               </p>
-<p>​    </p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1432,7 +1410,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">14</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
