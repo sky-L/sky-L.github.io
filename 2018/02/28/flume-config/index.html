@@ -42,7 +42,7 @@ Troubleshooting使用Flume拉取到HDFS中的文件格式错乱这是因为HDFS 
 flume
 
 Troubleshooting使用Flume拉取到HDFS中的文件格式错乱这是因为HDFS Sink的配置中，hdfs.writ">
-<meta property="og:updated_time" content="2018-02-28T11:01:34.346Z">
+<meta property="og:updated_time" content="2018-03-07T02:14:29.667Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="flume config | skylee">
 <meta name="twitter:description" content="FLume下载下载 bin 包，下载就可使用。绿色软件。
@@ -200,6 +200,10 @@ classes that you can use:
               
             </font>
             
+              <font class="tags">
+                <a class="tags-link" href="/tags/大数据/">大数据</a>
+              </font>
+            
 
         </span>
       </div>
@@ -221,6 +225,8 @@ classes that you can use:
 </blockquote>
 <h5 id="后台启动">后台启动</h5><p>可以用 <code>nohup bin/flume-ng agent -n agent -c conf -f conf/flume-conf.properties &gt; /dev/null &amp;</code><br>但是生产环境还是用  <a href="http://supervisord.org/index.html" target="_blank" rel="external">supervisor</a> 来管理吧</p>
 <h4 id="实战1_配置本机的_HDFS-">实战1 配置本机的 HDFS.</h4><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># 命名</span></span><br><span class="line">tcm.channels = ch-tcm</span><br><span class="line">tcm.sources = src-tcm</span><br><span class="line">tcm.sinks = sink-tcm</span><br><span class="line"><span class="preprocessor"># 配置 agent 的 channels </span></span><br><span class="line">tcm.channels.ch-tcm.type = file</span><br><span class="line">tcm.channels.ch-tcm.checkpointDir = /channels/checkpoint</span><br><span class="line">tcm.channels.ch-tcm.dataDirs = /channels/data</span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># 配置 agent 的 sources</span></span><br><span class="line">tcm.sources.src-tcm.type = spooldir</span><br><span class="line">tcm.sources.src-tcm.spoolDir = /home/wwwroot/hadoop/flume-<span class="number">1.8</span><span class="number">.0</span>/input/sources</span><br><span class="line"> </span><br><span class="line"><span class="preprocessor"># 配置 sinks</span></span><br><span class="line">tcm.sinks.sink-tcm.type = hdfs</span><br><span class="line">tcm.sinks.sink-tcm.hdfs.path = /hadoop-<span class="number">2.9</span><span class="number">.0</span>/flume/%y-%m-%d</span><br><span class="line"><span class="preprocessor"># 使用本机时间配置</span></span><br><span class="line">tcm.sinks.sink-tcm.hdfs.useLocalTimeStamp = <span class="literal">true</span></span><br><span class="line">tcm.sinks.sink-tcm.hdfs.inUsePrefix = .</span><br><span class="line"><span class="preprocessor"># 保留源文件的格式</span></span><br><span class="line">tcm.sinks.sink-tcm.hdfs.writeFormat = Text</span><br><span class="line"><span class="preprocessor"># 配置成一行一个 event 认是“SequenceFile”类型的，是将所有event拼成一行，应该该手动设置成hdfs.fileType=“DataStream”，这样就可以是一行一个event，</span></span><br><span class="line">与原文件格式保持一致</span><br><span class="line">tcm.sinks.sink-tcm.hdfs.fileType = DataStream</span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># 通过 channel 链接 sources 和 sinks</span></span><br><span class="line">tcm.sources.src-tcm.channels = ch-tcm</span><br><span class="line">tcm.sinks.sink-tcm.channel = ch-tcm</span><br></pre></td></tr></table></figure>
+<h4 id="启动">启动</h4><p><code>bin/flume-ng agent --conf conf/ -f conf/flume.conf  -Dflume.root.logger=INFO,console -n tcm</code></p>
+
     </section>
 
     
