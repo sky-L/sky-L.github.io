@@ -222,6 +222,100 @@
             
               
                 
+                <a class="post-title-link" href="/2018/03/09/配置 JAVA_HOME/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2018-03-09T16:46:55+08:00" content="2018-03-09">
+              2018-03-09
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>title: centos 配置 JAVA_HOME<br>date: 2018-01-01 20:56:06<br>tags: 大数据<br>categories: </p>
+<ul>
+<li>大数据</li>
+</ul>
+<h2 id="centos_配置_JAVA_HOME">centos 配置 JAVA_HOME</h2><h3 id="安装">安装</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="operator"><span class="keyword">install</span> <span class="keyword">java</span> <span class="keyword">java</span>-devel</span></span><br></pre></td></tr></table></figure>
+<p>默认安装在 <code>/usr/lib/jvm/java-openjdk</code></p>
+<p>通过 <code>ll</code> 命令可看到 java-openjdk 是个软连接</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="variable">@namenode</span> jvm]<span class="comment"># ll /usr/lib/jvm/java-openjdk</span></span><br><span class="line">lrwxrwxrwx <span class="number">1</span> root root <span class="number">34</span> <span class="constant">Feb</span> <span class="number">20</span> <span class="number">14</span>:<span class="number">28</span> /usr/<span class="class"><span class="keyword">lib</span>/<span class="title">jvm</span>/<span class="title">java</span>-<span class="title">openjdk</span> -&gt; /<span class="title">etc</span>/<span class="title">alternatives</span>/<span class="title">java_sdk_openjdk</span></span></span><br><span class="line"></span><br><span class="line"><span class="string">``</span><span class="string">` </span><br><span class="line"></span><br><span class="line">再通过 `</span>ll /etc/alternatives/java_sdk_openjdk<span class="string">` 就可以到实际的目录地址</span></span><br></pre></td></tr></table></figure>
+<p>[root@namenode jvm]# ll /etc/alternatives/java_sdk_openjdk<br>lrwxrwxrwx 1 root root 60 Feb 20 14:28 /etc/alternatives/java_sdk_openjdk -&gt; /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.161-0.b14.el7_4.x86_64<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">### 配置 JAVA_HOME</span></span><br></pre></td></tr></table></figure></p>
+<p>vim ~/.bashrc</p>
+<p>#set java environment<br>export JAVA_HOME=/usr/lib/jvm/java-openjdk</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">###问题：</span><br><span class="line">* 当遇到 JAV<span class="built_in">A_HOME</span> 版本不对？</span><br><span class="line"></span><br><span class="line">这就需要更改 <span class="escape">`/</span>etc/alternatives/jav<span class="built_in">a_sdk</span>_openjdk<span class="escape">` </span>实际的软连接地址。</span><br><span class="line"></span><br><span class="line">或者直接在 <span class="escape">`~</span>/.bashrc<span class="escape">` </span>里直接修改为</span><br></pre></td></tr></table></figure>
+<p>#set java environment<br>export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.161-0.b14.el7_4.x86_64<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">但是要注意查看 `<span class="tag">java-1</span><span class="class">.8</span><span class="class">.0-openjdk-1</span><span class="class">.8</span><span class="class">.0</span><span class="class">.161-0</span><span class="class">.b14</span><span class="class">.el7_4</span><span class="class">.x86_64</span>` 目录下是不是 `<span class="tag">jre</span>` 目录，如果有需要如下配置才能生效：</span><br></pre></td></tr></table></figure></p>
+<p>#set java environment<br>export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.161-0.b14.el7_4.x86_64/jre<br>``` </p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2018/03/01/sqoop/" itemprop="url">
                   Sqoop实战
                 </a>
@@ -1348,106 +1442,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/23/container/" itemprop="url">
-                  container实现
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-08-23T16:36:17+08:00" content="2016-08-23">
-              2016-08-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <blockquote>
-<p>纸上得来终觉浅，得知此事需躬行。 </p>
-</blockquote>
-<p>之前看phalcon框架DI的实现方式，觉得很好用，但是由于是c扩展，看不了源码，并不知道是如何实现的，后来看laravel的服务容器，发现是实现了php的SPL接口，然后用这些接口实现的。</p>
-<p>一个典型的「container」便是实现了arrayaccess，Demo如下。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">skylee</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">say</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span>   <span class="keyword">__METHOD__</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span></span><br><span class="line"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">say</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span>   <span class="keyword">__METHOD__</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 容器</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Container</span> <span class="keyword">implements</span> \<span class="title">arrayaccess</span></span><br><span class="line"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$container</span> = <span class="keyword">array</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(array <span class="variable">$array</span> = [])</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="variable">$this</span>-&gt;container = <span class="variable">$array</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__get</span><span class="params">(<span class="variable">$id</span>)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$this</span>-&gt;offsetGet(<span class="variable">$id</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">offsetSet</span><span class="params">(<span class="variable">$offset</span>, <span class="variable">$value</span>)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (is_null(<span class="variable">$offset</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="variable">$this</span>-&gt;container[] = <span class="variable">$value</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="variable">$this</span>-&gt;container[<span class="variable">$offset</span>] = <span class="variable">$value</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">offsetExists</span><span class="params">(<span class="variable">$offset</span>)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">isset</span>(<span class="variable">$this</span>-&gt;container[<span class="variable">$offset</span>]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">offsetUnset</span><span class="params">(<span class="variable">$offset</span>)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">unset</span>(<span class="variable">$this</span>-&gt;container[<span class="variable">$offset</span>]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">offsetGet</span><span class="params">(<span class="variable">$offset</span>)</span></span><br><span class="line">    </span>&#123; </span><br><span class="line">        <span class="variable">$raw</span> = <span class="variable">$this</span>-&gt;container[<span class="variable">$offset</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$this</span>-&gt;container[<span class="variable">$offset</span>] = <span class="variable">$raw</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">register</span><span class="params">(<span class="variable">$Manage</span>)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="variable">$Manage</span>-&gt;register(<span class="variable">$this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// provide</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span>  <span class="title">ServiceProvide</span> </span><br><span class="line"></span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">register</span><span class="params">(Container <span class="variable">$container</span>)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProvideA</span> <span class="keyword">implements</span> <span class="title">ServiceProvide</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">register</span><span class="params">(Container <span class="variable">$container</span>)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="variable">$container</span>[<span class="string">'A'</span>] = <span class="function"><span class="keyword">function</span> <span class="params">()</span></span><br><span class="line">        </span>&#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">new</span> skylee\A;  </span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProvideB</span> <span class="keyword">implements</span> <span class="title">ServiceProvide</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">register</span><span class="params">(Container <span class="variable">$container</span>)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="variable">$container</span>[<span class="string">'B'</span>] = <span class="function"><span class="keyword">function</span> <span class="params">()</span></span><br><span class="line">        </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> skylee\B;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Container</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$service</span> = [</span><br><span class="line">        skylee\ProvideA::class,</span><br><span class="line">        skylee\ProvideB::class</span><br><span class="line">    ];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">parent</span>::__construct();</span><br><span class="line">        </span><br><span class="line">        <span class="variable">$this</span>-&gt;registerProvide();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">registerProvide</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="variable">$this</span>-&gt;service <span class="keyword">as</span> <span class="variable">$v</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="variable">$this</span>-&gt;register(<span class="keyword">new</span> <span class="variable">$v</span>());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$obj</span> = <span class="keyword">new</span> App();</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = <span class="variable">$obj</span>[<span class="string">"A"</span>]-&gt;say();</span><br><span class="line"></span><br><span class="line"><span class="variable">$b</span> = <span class="variable">$obj</span>[<span class="string">"B"</span>]-&gt;say();</span><br><span class="line"></span><br><span class="line">var_dump(<span class="variable">$a</span>);</span><br><span class="line"></span><br><span class="line">var_dump(<span class="variable">$b</span>);</span></span><br></pre></td></tr></table></figure>
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1494,7 +1488,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">17</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
