@@ -37,7 +37,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="运维," />
 
 
 
@@ -53,28 +53,54 @@
 
 
 
-<meta name="description" content="Quick StartCreate a new post1234hexo n post &quot;title&quot;#写文章hexo g #生成hexo s #预览hexo d #部署 #可与hexo g合并为 hexo d -g
-More info: Writing
-Run server1$ hexo server
-More info: Server
-Generate static files1$ hexo">
+<meta name="description" content="引子
+最近入职了新公司一段时间了，做了一个项目。 用到很多之前了解过，但一直没机会实战的技术。接下来用几篇文章来总结一下使用到的技术和遇到的一些问题。
+
+目前会包括 2 个部分
+
+gitLab-ci 自动构建
+k8s 自动发布集群
+
+整体的发布流程
+接下来就先从 gitlab-ci 开始
+GitLab-CI基本条件
+拥有 gitLab 官方账号，或者有私有的 gitLab 仓库。
+会使用 GIT">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo使用">
-<meta property="og:url" content="http://yoursite.com/2016/01/01/hello-world/index.html">
+<meta property="og:title" content="GitLab-CI">
+<meta property="og:url" content="http://yoursite.com/2018/02/28/gitlab-ci/index.html">
 <meta property="og:site_name" content="skylee">
-<meta property="og:description" content="Quick StartCreate a new post1234hexo n post &quot;title&quot;#写文章hexo g #生成hexo s #预览hexo d #部署 #可与hexo g合并为 hexo d -g
-More info: Writing
-Run server1$ hexo server
-More info: Server
-Generate static files1$ hexo">
-<meta property="og:updated_time" content="2018-02-27T10:28:47.681Z">
+<meta property="og:description" content="引子
+最近入职了新公司一段时间了，做了一个项目。 用到很多之前了解过，但一直没机会实战的技术。接下来用几篇文章来总结一下使用到的技术和遇到的一些问题。
+
+目前会包括 2 个部分
+
+gitLab-ci 自动构建
+k8s 自动发布集群
+
+整体的发布流程
+接下来就先从 gitlab-ci 开始
+GitLab-CI基本条件
+拥有 gitLab 官方账号，或者有私有的 gitLab 仓库。
+会使用 GIT">
+<meta property="og:image" content="http://orsm22n69.bkt.clouddn.com/cicd.png">
+<meta property="og:image" content="https://docs.gitlab.com/ee/ci/img/cicd_pipeline_infograph.png">
+<meta property="og:updated_time" content="2018-06-21T03:00:01.725Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo使用">
-<meta name="twitter:description" content="Quick StartCreate a new post1234hexo n post &quot;title&quot;#写文章hexo g #生成hexo s #预览hexo d #部署 #可与hexo g合并为 hexo d -g
-More info: Writing
-Run server1$ hexo server
-More info: Server
-Generate static files1$ hexo">
+<meta name="twitter:title" content="GitLab-CI">
+<meta name="twitter:description" content="引子
+最近入职了新公司一段时间了，做了一个项目。 用到很多之前了解过，但一直没机会实战的技术。接下来用几篇文章来总结一下使用到的技术和遇到的一些问题。
+
+目前会包括 2 个部分
+
+gitLab-ci 自动构建
+k8s 自动发布集群
+
+整体的发布流程
+接下来就先从 gitlab-ci 开始
+GitLab-CI基本条件
+拥有 gitLab 官方账号，或者有私有的 gitLab 仓库。
+会使用 GIT">
 
 
 
@@ -86,7 +112,7 @@ Generate static files1$ hexo">
   };
 </script>
 
-  <title> hexo使用 | skylee </title>
+  <title> GitLab-CI | skylee </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -226,7 +252,7 @@ Generate static files1$ hexo">
             
             
               
-                hexo使用
+                GitLab-CI
               
             
           </h1>
@@ -235,8 +261,8 @@ Generate static files1$ hexo">
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2016-01-01T18:23:13+08:00" content="2016-01-01">
-              2016-01-01
+            <time itemprop="dateCreated" datetime="2018-02-28T18:56:06+08:00" content="2018-02-28">
+              2018-02-28
             </time>
           </span>
 
@@ -245,8 +271,8 @@ Generate static files1$ hexo">
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/介绍/" itemprop="url" rel="index">
-                    <span itemprop="name">介绍</span>
+                  <a href="/categories/运维/" itemprop="url" rel="index">
+                    <span itemprop="name">运维</span>
                   </a>
                 </span>
 
@@ -274,35 +300,85 @@ Generate static files1$ hexo">
       
 
       
-        <span itemprop="articleBody"><h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">n</span> <span class="keyword">post</span> <span class="string">"title"</span>#写文章</span><br><span class="line">hexo <span class="keyword">g</span> #生成</span><br><span class="line">hexo s #预览</span><br><span class="line">hexo <span class="keyword">d</span> #部署 #可与hexo <span class="keyword">g</span>合并为 hexo <span class="keyword">d</span> -<span class="keyword">g</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <span itemprop="articleBody"><h2 id="引子">引子</h2><blockquote>
+<p>最近入职了新公司一段时间了，做了一个项目。 用到很多之前了解过，但一直没机会实战的技术。接下来用几篇文章来总结一下使用到的技术和遇到的一些问题。</p>
+</blockquote>
+<p>目前会包括 2 个部分</p>
+<ul>
+<li>gitLab-ci 自动构建</li>
+<li>k8s 自动发布集群</li>
+</ul>
+<h3 id="整体的发布流程">整体的发布流程</h3><p><img src="http://orsm22n69.bkt.clouddn.com/cicd.png" alt=""></p>
+<p>接下来就先从 gitlab-ci 开始</p>
+<h2 id="GitLab-CI">GitLab-CI</h2><h3 id="基本条件">基本条件</h3><ul>
+<li>拥有 gitLab 官方账号，或者有私有的 gitLab 仓库。</li>
+<li>会使用 GIT</li>
+<li>如果以上都不会，那面壁去吧。</li>
+<li>最后先熟悉一下 <a href="https://docs.gitlab.com/ee/ci/" target="_blank" rel="external">官方文档</a>，虽然不是必须，但是有助于接下来的操作。</li>
+</ul>
+<h3 id="构建流程">构建流程</h3><p><img src="https://docs.gitlab.com/ee/ci/img/cicd_pipeline_infograph.png" alt=""></p>
+<h3 id="步骤">步骤</h3><ul>
+<li>首先开开心心的去 gitLab 创建一个新项目。以我的为例 <code>http://gitlab.**.com/skylee/my_test_ci</code></li>
+<li>在服务器上安装  <a href="https://docs.gitlab.com/runner/install/linux-manually.html" target="_blank" rel="external"><code>gitLab-runner</code></a> 服务</li>
+<li>注册  <a href="https://docs.gitlab.com/runner/register/index.html" target="_blank" rel="external"><code>runner</code></a></li>
+<li>在项目根目录下新增文件  <code>.gitlab-ci.yml</code>  </li>
+</ul>
+<h3 id="Usage">Usage</h3><h4 id="把代码打包成镜像并推送到远程仓库">把代码打包成镜像并推送到远程仓库</h4><p>项目代码 只有一个 <code>index.php</code> 文件</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">➜  <span class="tag">my_test_ci</span> <span class="tag">git</span><span class="pseudo">:(master)</span> <span class="tag">tree</span></span><br><span class="line">.</span><br><span class="line">├── <span class="tag">Dockerfile</span></span><br><span class="line">└── <span class="tag">index</span><span class="class">.php</span></span><br></pre></td></tr></table></figure>
+<p>其中 <code>Dockerfile</code> 文件为构建镜像，主要作用就是把 <code>index.php</code> 打包进镜像中。<code>Dockerfile</code> 的内容</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">FROM</span> php:<span class="number">7.2</span>-fpm</span><br><span class="line"><span class="built_in">VOLUME</span> <span class="bash">/data</span><br><span class="line"></span><span class="built_in">ADD</span> <span class="bash">. /data/www</span><br><span class="line"></span><span class="built_in">WORKDIR</span> <span class="bash">/data/www</span><br><span class="line"></span><span class="built_in">EXPOSE</span> <span class="number">9000</span></span><br></pre></td></tr></table></figure>
+<h5 id="配置_-gitlab-ci-yml">配置  <a href="https://docs.gitlab.com/ee/ci/yaml/README.html" target="_blank" rel="external"><code>.gitlab-ci.yml</code> </a></h5><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">image</span>: <span class="string">docker.io/skylee:docker</span></span><br><span class="line"></span><br><span class="line"><span class="haml">stages:</span><br><span class="line">  -<span class="ruby"> package</span><br><span class="line"></span></span><br><span class="line">docker-build:</span><br><span class="line">  stage: package</span><br><span class="line">  before_script:</span><br><span class="line">    -<span class="ruby"> source /etc/profile.d/docker</span><br><span class="line"></span>  script:</span><br><span class="line">    -<span class="ruby"> echo <span class="string">'Building...'</span></span><br><span class="line"></span>    -<span class="ruby"> docker login -u <span class="variable">$REPOSITORY_USER</span> -p <span class="variable">$REPOSITORY_PASSWORD</span> hub.docker.com</span><br><span class="line"></span>    -<span class="ruby"> docker build -t skylee/<span class="symbol">phptest:</span>latest .</span><br><span class="line"></span>    -<span class="ruby"> docker push skylee/<span class="symbol">phptest:</span>latest</span></span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>docker.io/skylee:docker 是基于 docker:git 镜像，添加了一些环境变量。</p>
+</blockquote>
+<h5 id="git_push_之后会触发构建过程">git push 之后会触发构建过程</h5><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Running <span class="keyword">with</span> gitlab<span class="attribute">-runner</span> <span class="number">10.8</span><span class="number">.0</span> (<span class="number">079</span>aad9e)</span><br><span class="line">  <span class="keyword">on</span> <span class="number">192</span>-<span class="number">168</span>-<span class="number">53</span>-<span class="number">35</span> <span class="number">337</span>b5bc7</span><br><span class="line">Using Docker execut<span class="subst">or</span> <span class="keyword">with</span> image docker<span class="built_in">.</span>io/skylee:docker <span class="attribute">...</span></span><br><span class="line">Pulling docker image docker<span class="built_in">.</span>io/skylee:docker <span class="attribute">...</span></span><br><span class="line">Using docker image sha256:<span class="number">58</span>cf969aeca7f67649540fb60b1853a153dc3660bbb2e0b7ba33cdb752723cc7 f<span class="subst">or</span> docker<span class="built_in">.</span>io/skylee:docker <span class="attribute">...</span></span><br><span class="line">Running <span class="keyword">on</span> runner-<span class="number">337</span>b5bc7<span class="attribute">-project</span>-<span class="number">34</span><span class="attribute">-concurrent</span>-<span class="number">0</span> via <span class="number">192</span>-<span class="number">168</span>-<span class="number">53</span>-<span class="number">35.</span><span class="built_in">..</span><br><span class="line"></span>Cloning repository<span class="attribute">...</span></span><br><span class="line">Cloning <span class="keyword">into</span> <span class="string">'/builds/likai15/my_test_ci'</span><span class="attribute">...</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">...</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用 <code>image: docker.io/skylee:docker</code> 启动一个容器。之后所有的命令都是在容器内操作的。</li>
+<li>启动 <code>docker:dind</code> 服务。也就是 <code>docker</code> 的进程。</li>
+<li><code>gitlab-runner</code> 克隆代码到容器目录  <code>/builds/likai15/my_test_ci</code>。 由于没有指定挂载目录，可以在宿主机的默认挂载目录看到 <code>/var/lib/docker/xxxx/_data/my_test_ci</code></li>
+<li>开始执行 <code>docker-build</code> 阶段的 job。</li>
+</ul>
+<h3 id="FAQ">FAQ</h3><ul>
+<li><p>mount: permission denied (are you root?) 答： <a href="https://gitlab.com/gitlab-org/gitlab-runner/issues/1544" target="_blank" rel="external">这里</a></p>
+</li>
+<li><p>docker:dind 是啥东西？ 答 ：<a href="https://hub.docker.com/_/docker/" target="_blank" rel="external">这里</a></p>
+</li>
+<li>构建过程耗时过长 ？  答：一般我们都会自己搭建一个私有的内网仓库。</li>
+</ul>
+<h2 id="搭建私有_docker_仓库">搭建私有 docker 仓库</h2><ul>
+<li><a href="https://blog.csdn.net/u010397369/article/details/42422243" target="_blank" rel="external">参考</a></li>
+</ul>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p <span class="number">5000</span>:<span class="number">5000</span> -v /<span class="keyword">registry</span>:/tmp/<span class="keyword">registry</span> <span class="keyword">registry</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>只是简单搭建了一个用 docker.images 的私有仓库。也可以使用 [Harbor] 。(<a href="https://github.com/vmware/harbor/" target="_blank" rel="external">https://github.com/vmware/harbor/</a>)<br>参考 <a href="https://www.souyunku.com/2018/01/06/Docker-harbor-registry/" target="_blank" rel="external">搭建 Harbor</a></p>
+</blockquote>
 </span>
       
     </div>
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/运维/" rel="tag">#运维</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/11/19/gitbook/" rel="next" title="gitbook的小命令">
-                <i class="fa fa-chevron-left"></i> gitbook的小命令
+              <a href="/2018/02/27/Hadoop-install/" rel="next" title="Hadoop实战">
+                <i class="fa fa-chevron-left"></i> Hadoop实战
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/01/21/diary/" rel="prev" title="一句过了半月">
-                一句过了半月 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/02/28/flume-config/" rel="prev" title="Flume的安装和配置">
+                Flume的安装和配置 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -417,7 +493,7 @@ Generate static files1$ hexo">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick_Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create_a_new_post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run_server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate_static_files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy_to_remote_sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引子"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#整体的发布流程"><span class="nav-number">1.1.</span> <span class="nav-text">整体的发布流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GitLab-CI"><span class="nav-number">2.</span> <span class="nav-text">GitLab-CI</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本条件"><span class="nav-number">2.1.</span> <span class="nav-text">基本条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建流程"><span class="nav-number">2.2.</span> <span class="nav-text">构建流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤"><span class="nav-number">2.3.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Usage"><span class="nav-number">2.4.</span> <span class="nav-text">Usage</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#把代码打包成镜像并推送到远程仓库"><span class="nav-number">2.4.1.</span> <span class="nav-text">把代码打包成镜像并推送到远程仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#配置_-gitlab-ci-yml"><span class="nav-number">2.4.1.1.</span> <span class="nav-text">配置  .gitlab-ci.yml </span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git_push_之后会触发构建过程"><span class="nav-number">2.4.1.2.</span> <span class="nav-text">git push 之后会触发构建过程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FAQ"><span class="nav-number">2.5.</span> <span class="nav-text">FAQ</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建私有_docker_仓库"><span class="nav-number">3.</span> <span class="nav-text">搭建私有 docker 仓库</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

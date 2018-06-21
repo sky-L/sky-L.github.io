@@ -199,15 +199,6 @@
 
     
     
-      
-      
-        
-        
-        
-      
-
-      
-    
 
     
       
@@ -529,6 +520,153 @@
 <h4 id="实战1_配置本机的_HDFS-">实战1 配置本机的 HDFS.</h4><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># 命名</span></span><br><span class="line">tcm.channels = ch-tcm</span><br><span class="line">tcm.sources = src-tcm</span><br><span class="line">tcm.sinks = sink-tcm</span><br><span class="line"><span class="preprocessor"># 配置 agent 的 channels </span></span><br><span class="line">tcm.channels.ch-tcm.type = file</span><br><span class="line">tcm.channels.ch-tcm.checkpointDir = /channels/checkpoint</span><br><span class="line">tcm.channels.ch-tcm.dataDirs = /channels/data</span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># 配置 agent 的 sources</span></span><br><span class="line">tcm.sources.src-tcm.type = spooldir</span><br><span class="line">tcm.sources.src-tcm.spoolDir = /home/wwwroot/hadoop/flume-<span class="number">1.8</span><span class="number">.0</span>/input/sources</span><br><span class="line"> </span><br><span class="line"><span class="preprocessor"># 配置 sinks</span></span><br><span class="line">tcm.sinks.sink-tcm.type = hdfs</span><br><span class="line">tcm.sinks.sink-tcm.hdfs.path = /hadoop-<span class="number">2.9</span><span class="number">.0</span>/flume/%y-%m-%d</span><br><span class="line"><span class="preprocessor"># 使用本机时间配置</span></span><br><span class="line">tcm.sinks.sink-tcm.hdfs.useLocalTimeStamp = <span class="literal">true</span></span><br><span class="line">tcm.sinks.sink-tcm.hdfs.inUsePrefix = .</span><br><span class="line"><span class="preprocessor"># 保留源文件的格式</span></span><br><span class="line">tcm.sinks.sink-tcm.hdfs.writeFormat = Text</span><br><span class="line"><span class="preprocessor"># 配置成一行一个 event 认是“SequenceFile”类型的，是将所有event拼成一行，应该该手动设置成hdfs.fileType=“DataStream”，这样就可以是一行一个event，</span></span><br><span class="line">与原文件格式保持一致</span><br><span class="line">tcm.sinks.sink-tcm.hdfs.fileType = DataStream</span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># 通过 channel 链接 sources 和 sinks</span></span><br><span class="line">tcm.sources.src-tcm.channels = ch-tcm</span><br><span class="line">tcm.sinks.sink-tcm.channel = ch-tcm</span><br></pre></td></tr></table></figure>
 <h4 id="启动">启动</h4><p><code>bin/flume-ng agent --conf conf/ -f conf/flume.conf  -Dflume.root.logger=INFO,console -n tcm</code></p>
 <h4 id="实战2_应用服务器上的数据传到_hadoop_的_namenode_服务器">实战2 应用服务器上的数据传到 hadoop 的 namenode 服务器</h4><figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># namenode 配置 conf/<span class="number">33.10</span>.conf</span></span><br><span class="line"><span class="preprocessor"># 命名</span></span><br><span class="line">tcm.channels = ch-tcm</span><br><span class="line">tcm.sources = src-tcm</span><br><span class="line">tcm.sinks = sink-tcm</span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># 配置 agent 的 channels</span></span><br><span class="line">tcm.channels.ch-tcm.<span class="built_in">type</span> = file</span><br><span class="line">tcm.channels.ch-tcm.checkpointDir = /channels/checkpoint</span><br><span class="line">tcm.channels.ch-tcm.dataDirs = /channels/data</span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># 配置 agent 的 sources</span></span><br><span class="line">tcm.sources.src-tcm.<span class="built_in">type</span> = avro</span><br><span class="line">tcm.sources.src-tcm.bind = <span class="number">0.0</span>.<span class="number">0.0</span>  </span><br><span class="line">tcm.sources.src-tcm.port = <span class="number">4545</span> </span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># 配置 sinks</span></span><br><span class="line">tcm.sinks.sink-tcm.<span class="built_in">type</span> = hdfs</span><br><span class="line">tcm.sinks.sink-tcm.hdfs.path = /hadoop-<span class="number">2.9</span>.<span class="number">0</span>/flume/%y-%m-%d</span><br><span class="line"><span class="preprocessor"># 使用本机时间配置</span></span><br><span class="line">tcm.sinks.sink-tcm.hdfs.useLocalTimeStamp = <span class="literal">true</span></span><br><span class="line">tcm.sinks.sink-tcm.hdfs.inUsePrefix = .</span><br><span class="line"><span class="preprocessor"># 保留源文件的格式</span></span><br><span class="line">tcm.sinks.sink-tcm.hdfs.writeFormat = <span class="built_in">Text</span></span><br><span class="line"><span class="preprocessor"># 配置成一行一个 event 认是“SequenceFile”类型的，是将所有event拼成一行，应该该手动设置成hdfs.fileType=“DataStream”，这样就可以是一行一个event，与原文件格式保持一致</span></span><br><span class="line">tcm.sinks.sink-tcm.hdfs.fileType = DataStream</span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># 通过 channel 链接 sources 和 sinks</span></span><br><span class="line">tcm.sources.src-tcm.channels = ch-tcm</span><br><span class="line">tcm.sinks.sink-tcm.channel = ch-tcm</span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># 启动命令  bin/flume-ng agent -c conf/ -f conf/<span class="number">33.10</span>.conf -Dflume.root.logger=INFO,console -n tcm</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># ================================================================</span></span><br><span class="line"><span class="preprocessor"># 应用服务器 <span class="number">192.168</span>.<span class="number">33.10</span> conf/f2.conf</span></span><br><span class="line"><span class="preprocessor"># 命名</span></span><br><span class="line"><span class="built_in">agent</span>.sources = src_test10</span><br><span class="line"><span class="built_in">agent</span>.channels = ch_test10</span><br><span class="line"><span class="built_in">agent</span>.sinks =  sink_test10 </span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># 配置 channel</span></span><br><span class="line"><span class="built_in">agent</span>.channels.ch_test10.<span class="built_in">type</span> = memory  </span><br><span class="line"><span class="built_in">agent</span>.channels.ch_test10.capacity = <span class="number">10000</span>  </span><br><span class="line">  </span><br><span class="line"><span class="preprocessor"># 配置 source  </span></span><br><span class="line"><span class="built_in">agent</span>.sources.src_test10.<span class="built_in">type</span> = spooldir  </span><br><span class="line"><span class="built_in">agent</span>.sources.src_test10.spoolDir = /tmp/flume </span><br><span class="line"><span class="built_in">agent</span>.sources.src_test10.deserializer.maxLineLength = <span class="number">2048</span>  </span><br><span class="line"><span class="built_in">agent</span>.sources.src_test10.interceptors = i2  </span><br><span class="line"><span class="built_in">agent</span>.sources.src_test10.interceptors.i2.<span class="built_in">type</span> = host  </span><br><span class="line"><span class="built_in">agent</span>.sources.src_test10.interceptors.i2.hostHeader = hostname  </span><br><span class="line"> </span><br><span class="line"><span class="preprocessor"># 配置 sinks  </span></span><br><span class="line"><span class="built_in">agent</span>.sinks.sink_test10.<span class="built_in">type</span> = avro  </span><br><span class="line"><span class="built_in">agent</span>.sinks.sink_test10.channel = ch_test10  </span><br><span class="line"><span class="built_in">agent</span>.sinks.sink_test10.hostname = <span class="number">192.168</span>.<span class="number">33.33</span>  </span><br><span class="line"><span class="built_in">agent</span>.sinks.sink_test10.port = <span class="number">4545</span> </span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># chanel 链接 source 和 sink</span></span><br><span class="line"><span class="built_in">agent</span>.sources.src_test10.channels = ch_test10 </span><br><span class="line"><span class="built_in">agent</span>.sinks.sink_test10.channel = ch_test10 </span><br><span class="line"></span><br><span class="line"><span class="preprocessor">## 启动 bin/flume-ng agent -c conf/ -f conf/f2.conf -Dflume.root.logger=INFO,console -n agent</span></span><br></pre></td></tr></table></figure>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/02/28/gitlab-ci/" itemprop="url">
+                  GitLab-CI
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2018-02-28T18:56:06+08:00" content="2018-02-28">
+              2018-02-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/运维/" itemprop="url" rel="index">
+                    <span itemprop="name">运维</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <h2 id="引子">引子</h2><blockquote>
+<p>最近入职了新公司一段时间了，做了一个项目。 用到很多之前了解过，但一直没机会实战的技术。接下来用几篇文章来总结一下使用到的技术和遇到的一些问题。</p>
+</blockquote>
+<p>目前会包括 2 个部分</p>
+<ul>
+<li>gitLab-ci 自动构建</li>
+<li>k8s 自动发布集群</li>
+</ul>
+<h3 id="整体的发布流程">整体的发布流程</h3><p><img src="http://orsm22n69.bkt.clouddn.com/cicd.png" alt=""></p>
+<p>接下来就先从 gitlab-ci 开始</p>
+<h2 id="GitLab-CI">GitLab-CI</h2><h3 id="基本条件">基本条件</h3><ul>
+<li>拥有 gitLab 官方账号，或者有私有的 gitLab 仓库。</li>
+<li>会使用 GIT</li>
+<li>如果以上都不会，那面壁去吧。</li>
+<li>最后先熟悉一下 <a href="https://docs.gitlab.com/ee/ci/" target="_blank" rel="external">官方文档</a>，虽然不是必须，但是有助于接下来的操作。</li>
+</ul>
+<h3 id="构建流程">构建流程</h3><p><img src="https://docs.gitlab.com/ee/ci/img/cicd_pipeline_infograph.png" alt=""></p>
+<h3 id="步骤">步骤</h3><ul>
+<li>首先开开心心的去 gitLab 创建一个新项目。以我的为例 <code>http://gitlab.**.com/skylee/my_test_ci</code></li>
+<li>在服务器上安装  <a href="https://docs.gitlab.com/runner/install/linux-manually.html" target="_blank" rel="external"><code>gitLab-runner</code></a> 服务</li>
+<li>注册  <a href="https://docs.gitlab.com/runner/register/index.html" target="_blank" rel="external"><code>runner</code></a></li>
+<li>在项目根目录下新增文件  <code>.gitlab-ci.yml</code>  </li>
+</ul>
+<h3 id="Usage">Usage</h3><h4 id="把代码打包成镜像并推送到远程仓库">把代码打包成镜像并推送到远程仓库</h4><p>项目代码 只有一个 <code>index.php</code> 文件</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">➜  <span class="tag">my_test_ci</span> <span class="tag">git</span><span class="pseudo">:(master)</span> <span class="tag">tree</span></span><br><span class="line">.</span><br><span class="line">├── <span class="tag">Dockerfile</span></span><br><span class="line">└── <span class="tag">index</span><span class="class">.php</span></span><br></pre></td></tr></table></figure>
+<p>其中 <code>Dockerfile</code> 文件为构建镜像，主要作用就是把 <code>index.php</code> 打包进镜像中。<code>Dockerfile</code> 的内容</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">FROM</span> php:<span class="number">7.2</span>-fpm</span><br><span class="line"><span class="built_in">VOLUME</span> <span class="bash">/data</span><br><span class="line"></span><span class="built_in">ADD</span> <span class="bash">. /data/www</span><br><span class="line"></span><span class="built_in">WORKDIR</span> <span class="bash">/data/www</span><br><span class="line"></span><span class="built_in">EXPOSE</span> <span class="number">9000</span></span><br></pre></td></tr></table></figure>
+<h5 id="配置_-gitlab-ci-yml">配置  <a href="https://docs.gitlab.com/ee/ci/yaml/README.html" target="_blank" rel="external"><code>.gitlab-ci.yml</code> </a></h5><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">image</span>: <span class="string">docker.io/skylee:docker</span></span><br><span class="line"></span><br><span class="line"><span class="haml">stages:</span><br><span class="line">  -<span class="ruby"> package</span><br><span class="line"></span></span><br><span class="line">docker-build:</span><br><span class="line">  stage: package</span><br><span class="line">  before_script:</span><br><span class="line">    -<span class="ruby"> source /etc/profile.d/docker</span><br><span class="line"></span>  script:</span><br><span class="line">    -<span class="ruby"> echo <span class="string">'Building...'</span></span><br><span class="line"></span>    -<span class="ruby"> docker login -u <span class="variable">$REPOSITORY_USER</span> -p <span class="variable">$REPOSITORY_PASSWORD</span> hub.docker.com</span><br><span class="line"></span>    -<span class="ruby"> docker build -t skylee/<span class="symbol">phptest:</span>latest .</span><br><span class="line"></span>    -<span class="ruby"> docker push skylee/<span class="symbol">phptest:</span>latest</span></span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>docker.io/skylee:docker 是基于 docker:git 镜像，添加了一些环境变量。</p>
+</blockquote>
+<h5 id="git_push_之后会触发构建过程">git push 之后会触发构建过程</h5><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Running <span class="keyword">with</span> gitlab<span class="attribute">-runner</span> <span class="number">10.8</span><span class="number">.0</span> (<span class="number">079</span>aad9e)</span><br><span class="line">  <span class="keyword">on</span> <span class="number">192</span>-<span class="number">168</span>-<span class="number">53</span>-<span class="number">35</span> <span class="number">337</span>b5bc7</span><br><span class="line">Using Docker execut<span class="subst">or</span> <span class="keyword">with</span> image docker<span class="built_in">.</span>io/skylee:docker <span class="attribute">...</span></span><br><span class="line">Pulling docker image docker<span class="built_in">.</span>io/skylee:docker <span class="attribute">...</span></span><br><span class="line">Using docker image sha256:<span class="number">58</span>cf969aeca7f67649540fb60b1853a153dc3660bbb2e0b7ba33cdb752723cc7 f<span class="subst">or</span> docker<span class="built_in">.</span>io/skylee:docker <span class="attribute">...</span></span><br><span class="line">Running <span class="keyword">on</span> runner-<span class="number">337</span>b5bc7<span class="attribute">-project</span>-<span class="number">34</span><span class="attribute">-concurrent</span>-<span class="number">0</span> via <span class="number">192</span>-<span class="number">168</span>-<span class="number">53</span>-<span class="number">35.</span><span class="built_in">..</span><br><span class="line"></span>Cloning repository<span class="attribute">...</span></span><br><span class="line">Cloning <span class="keyword">into</span> <span class="string">'/builds/likai15/my_test_ci'</span><span class="attribute">...</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">...</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用 <code>image: docker.io/skylee:docker</code> 启动一个容器。之后所有的命令都是在容器内操作的。</li>
+<li>启动 <code>docker:dind</code> 服务。也就是 <code>docker</code> 的进程。</li>
+<li><code>gitlab-runner</code> 克隆代码到容器目录  <code>/builds/likai15/my_test_ci</code>。 由于没有指定挂载目录，可以在宿主机的默认挂载目录看到 <code>/var/lib/docker/xxxx/_data/my_test_ci</code></li>
+<li>开始执行 <code>docker-build</code> 阶段的 job。</li>
+</ul>
+<h3 id="FAQ">FAQ</h3><ul>
+<li><p>mount: permission denied (are you root?) 答： <a href="https://gitlab.com/gitlab-org/gitlab-runner/issues/1544" target="_blank" rel="external">这里</a></p>
+</li>
+<li><p>docker:dind 是啥东西？ 答 ：<a href="https://hub.docker.com/_/docker/" target="_blank" rel="external">这里</a></p>
+</li>
+<li>构建过程耗时过长 ？  答：一般我们都会自己搭建一个私有的内网仓库。</li>
+</ul>
+<h2 id="搭建私有_docker_仓库">搭建私有 docker 仓库</h2><ul>
+<li><a href="https://blog.csdn.net/u010397369/article/details/42422243" target="_blank" rel="external">参考</a></li>
+</ul>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p <span class="number">5000</span>:<span class="number">5000</span> -v /<span class="keyword">registry</span>:/tmp/<span class="keyword">registry</span> <span class="keyword">registry</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>只是简单搭建了一个用 docker.images 的私有仓库。也可以使用 [Harbor] 。(<a href="https://github.com/vmware/harbor/" target="_blank" rel="external">https://github.com/vmware/harbor/</a>)<br>参考 <a href="https://www.souyunku.com/2018/01/06/Docker-harbor-registry/" target="_blank" rel="external">搭建 Harbor</a></p>
+</blockquote>
 
             
           </span>
@@ -1348,124 +1486,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/16/php-cgi/" itemprop="url">
-                  nginx是怎么把请求转发给php的？
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-11-16T18:29:45+08:00" content="2016-11-16">
-              2016-11-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/介绍/" itemprop="url" rel="index">
-                    <span itemprop="name">介绍</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <blockquote>
-<p>佛家有人生三重境界之说,即:“看山是山,看水是水;看山不是山,看水不是水;看山还是山,看水还是水。反观学习的各种东西，有那一个不是如此呢。<br>初入门的时候，被问到服务器是怎么解析php的，会很自信的回答，nginx把请求交给php，php把执行结果返回给nginx然后响应给浏览器。这样的回答，应该是没有<br>任何问题的。但是请求是怎么交给php的呢？当时忙碌在每天的业务代码中，无暇也无心来关注这些。</p>
-</blockquote>
-<p>哪现在再遇到这样的问题呢</p>
-<ul>
-<li>1，php是这么和nginx接受nginx的请求的 ？  </li>
-<li>2，当项目需要多个php版本共存的时候该怎么做 ？</li>
-</ul>
-<p>要理解nginx怎么转发请求的，需要了解几个概念，Cgi，FastCgi，这些概念不只局限于nginx-php，linux里的进程通信大都基于此。</p>
-<h3 id="什么是Cgi,FastCgi，php-fpm_?">什么是Cgi,FastCgi，php-fpm ?</h3><h4 id="CGI">CGI</h4><p>CGI全称是“公共网关接口”(Common Gateway Interface)，HTTP服务器与你的或其它机器上的程序进行“交谈”的一种工具，其程序须运行在网络服务器上。</p>
-<p>CGI可以用任何一种语言编写，只要这种语言具有标准输入、输出和环境变量。如php,perl,tcl等。</p>
-<h4 id="FastCGI">FastCGI</h4><p>FastCGI像是一个常驻(long-live)型的CGI，它可以一直执行着，只要激活后，不会每次都要花费时间去fork一次（这是CGI最为人诟病的fork-and-execute 模式）。它还支持分布式的运算，即 FastCGI 程序可以在网站服务器以外的主机上执行并且接受来自其它网站服务器来的请求。</p>
-<p>FastCGI是语言无关的、可伸缩架构的CGI开放扩展，其主要行为是将CGI解释器进程保持在内存中并因此获得较高的性能。众所周知，CGI解释器的反复加载是CGI性能低下的主要原因，如果CGI解释器保持在内存中并接受FastCGI进程管理器调度，则可以提供良好的性能、伸缩性、Fail- Over特性等等。</p>
-<h4 id="PHP-FPM">PHP-FPM</h4><p>PHP-FPM是一个PHP FastCGI管理器，是只用于PHP的。</p>
-<p>PHP-FPM其实是PHP源代码的一个补丁，旨在将FastCGI进程管理整合进PHP包中。</p>
-<p>在安装时，./configure的时候带 –enable-fpm 参数即可开启PHP-FPM。</p>
-<hr>
-<p>了解这些我们就知道，通信的流程就是，nginx接受到请求，是通过cgi与php进行通信。<br>具体实现，</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">修改php-fpm.conf</span><br><span class="line"></span><br><span class="line">listen = <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">9000</span></span><br><span class="line">或者</span><br><span class="line">listen = /dev/shm/php-cgi.sock</span><br><span class="line"></span><br><span class="line">修改nginx配置文件server段的配置</span><br><span class="line"></span><br><span class="line">location ~ [^/]\.php(/|$) &#123;</span><br><span class="line">    fastcgi_pass <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">9000</span>;</span><br><span class="line">    <span class="preprocessor">#或</span></span><br><span class="line">    fastcgi_pass unix:/dev/shm/php-cgi.sock;</span><br><span class="line">    fastcgi_index index.php;</span><br><span class="line">    include fastcgi.conf;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这样就引刃而解了第2个问题，可以首先安装多个php版本，通过  –prefix 指定不同的目录,php-fpm启动的时候，可以选择不同的端口，或者不同的sock。然后项目里nginx配置里<br>指定对应的php-fpm就实现了php多个版本共存。</p>
-<blockquote>
-<p>入IT这一行已经进入了第五个年头，有时候会想工作的意义在哪里。</p>
-</blockquote>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1512,21 +1532,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-count">18</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
