@@ -37,7 +37,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="大数据," />
+  <meta name="keywords" content="运维," />
 
 
 
@@ -53,34 +53,40 @@
 
 
 
-<meta name="description" content="Sqoop安装
-下载  sqoop-1.4.6.bin__hadoop-2.0.4-alpha.tar.gz 网址
-配置环境变量 
+<meta name="description" content="DBproxy文档
+文档链接 
+制作的 docker 镜像 
+使用镜像docker pull skylee/docker:dbproxy
+配置必要参数，就可进行测试了。
+一般公司项目的话，运维同学都已经帮忙把环境部署做好了，但是作为开发需要了解这些功能。并且知道怎么样可能优化开发流程。
 
-123export HADOOP_COMMON_HOME=/home/hadoop/opt/hadoop-2.6.0export HADOOP_MAPRED_HOME=/home/hadoop/opt/hadoop-2.6.0
-
-下载 mysql  jra包 地址">
+使用DBproxy 通过配置文件的方式来发挥作用。
+主从配置123456789pwds=xxx:6eSYdMI">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Sqoop实战">
-<meta property="og:url" content="http://yoursite.com/2018/03/01/sqoop/index.html">
+<meta property="og:title" content="DBProxy">
+<meta property="og:url" content="http://yoursite.com/2018/06/20/DBProxy/index.html">
 <meta property="og:site_name" content="skylee">
-<meta property="og:description" content="Sqoop安装
-下载  sqoop-1.4.6.bin__hadoop-2.0.4-alpha.tar.gz 网址
-配置环境变量 
+<meta property="og:description" content="DBproxy文档
+文档链接 
+制作的 docker 镜像 
+使用镜像docker pull skylee/docker:dbproxy
+配置必要参数，就可进行测试了。
+一般公司项目的话，运维同学都已经帮忙把环境部署做好了，但是作为开发需要了解这些功能。并且知道怎么样可能优化开发流程。
 
-123export HADOOP_COMMON_HOME=/home/hadoop/opt/hadoop-2.6.0export HADOOP_MAPRED_HOME=/home/hadoop/opt/hadoop-2.6.0
-
-下载 mysql  jra包 地址">
-<meta property="og:updated_time" content="2018-03-07T11:01:11.981Z">
+使用DBproxy 通过配置文件的方式来发挥作用。
+主从配置123456789pwds=xxx:6eSYdMI">
+<meta property="og:updated_time" content="2018-06-21T06:14:57.694Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sqoop实战">
-<meta name="twitter:description" content="Sqoop安装
-下载  sqoop-1.4.6.bin__hadoop-2.0.4-alpha.tar.gz 网址
-配置环境变量 
+<meta name="twitter:title" content="DBProxy">
+<meta name="twitter:description" content="DBproxy文档
+文档链接 
+制作的 docker 镜像 
+使用镜像docker pull skylee/docker:dbproxy
+配置必要参数，就可进行测试了。
+一般公司项目的话，运维同学都已经帮忙把环境部署做好了，但是作为开发需要了解这些功能。并且知道怎么样可能优化开发流程。
 
-123export HADOOP_COMMON_HOME=/home/hadoop/opt/hadoop-2.6.0export HADOOP_MAPRED_HOME=/home/hadoop/opt/hadoop-2.6.0
-
-下载 mysql  jra包 地址">
+使用DBproxy 通过配置文件的方式来发挥作用。
+主从配置123456789pwds=xxx:6eSYdMI">
 
 
 
@@ -92,7 +98,7 @@
   };
 </script>
 
-  <title> Sqoop实战 | skylee </title>
+  <title> DBProxy | skylee </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -232,7 +238,7 @@
             
             
               
-                Sqoop实战
+                DBProxy
               
             
           </h1>
@@ -241,8 +247,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2018-03-01T18:56:06+08:00" content="2018-03-01">
-              2018-03-01
+            <time itemprop="dateCreated" datetime="2018-06-20T09:56:06+08:00" content="2018-06-20">
+              2018-06-20
             </time>
           </span>
 
@@ -251,8 +257,8 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/大数据/" itemprop="url" rel="index">
-                    <span itemprop="name">大数据</span>
+                  <a href="/categories/运维/" itemprop="url" rel="index">
+                    <span itemprop="name">运维</span>
                   </a>
                 </span>
 
@@ -280,27 +286,29 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="Sqoop">Sqoop</h2><h4 id="安装">安装</h4><ul>
-<li>下载  sqoop-1.4.6.bin__hadoop-2.0.4-alpha.tar.gz <a href="http://sqoop.apache.org/" target="_blank" rel="external">网址</a></li>
-<li>配置环境变量 </li>
+        <span itemprop="articleBody"><h2 id="DBproxy">DBproxy</h2><h3 id="文档">文档</h3><ul>
+<li><a href="https://github.com/Meituan-Dianping/DBProxy/blob/master/doc/USER_GUIDE.md" target="_blank" rel="external">文档链接</a> </li>
+<li><a href="https://hub.docker.com/r/skylee/docker/tags/" target="_blank" rel="external">制作的 docker 镜像</a> </li>
+<li>使用镜像<code>docker pull skylee/docker:dbproxy</code></li>
+<li>配置必要参数，就可进行测试了。</li>
+<li>一般公司项目的话，运维同学都已经帮忙把环境部署做好了，但是作为开发需要了解这些功能。并且知道怎么样可能优化开发流程。</li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> HADOOP_COMMON_HOME=/home/hadoop/opt/hadoop-<span class="number">2.6</span><span class="number">.0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> HADOOP_MAPRED_HOME=/home/hadoop/opt/hadoop-<span class="number">2.6</span><span class="number">.0</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>下载 mysql  jra包 <a href="https://dev.mysql.com/downloads/connector/j/" target="_blank" rel="external">地址</a> 把 mysql-connector-java-5.1.45-bin.jar 复制到 <code>SQOOP_HOME/lib</code></li>
-</ul>
-<h4 id="一些例子：">一些例子：</h4><h5 id="把_mysql_数据导入到_hdfs">把 mysql 数据导入到 hdfs</h5><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 链接数据库  这个只做提示作用,相当于是个变量</span><br><span class="line"><span class="label">$c</span> = <span class="string">" --connect jdbc:mysql://192.168.0.89:3306/tob --username web --password passwd "</span> </span><br><span class="line"></span><br><span class="line"># 查看数据库列表</span><br><span class="line">sqoop <span class="keyword">list</span>-databases <span class="label">$c</span></span><br><span class="line"></span><br><span class="line">-- 把表 tob_dealer 数据导出到 /tmp 目录， 为 hadoop 文件系统目录</span><br><span class="line">bin/sqoop import <span class="label">$c</span> --<span class="keyword">table</span> tob_dealer --target-<span class="keyword">dir</span> /tmp</span><br><span class="line"></span><br><span class="line">-- 把 tob_dealer 表中的 id，link_phone 字段导入到 hdfs 的 /tmp 目录下</span><br><span class="line">bin/sqoop import  <span class="label">$c</span> --<span class="keyword">table</span> tob_dealer  --columns <span class="string">"id,link_phone"</span>  -<span class="keyword">m</span> 1 --target-<span class="keyword">dir</span> /tmp</span><br></pre></td></tr></table></figure>
-<h5 id="把_mysql_数据导入到_Hive_数据仓库表">把 mysql 数据导入到 Hive 数据仓库表</h5><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// -m <span class="number">1</span> 表示 <span class="keyword">map</span>/reduce 作业的个数</span><br><span class="line">//不指定表名称 会自动创建一张同名表（tob_dealer）来保存数据</span><br><span class="line">bin/sqoop <span class="keyword">import</span> --hive-import <span class="variable">$c</span> --table tob_dealer -m <span class="number">1</span></span><br><span class="line"></span><br><span class="line">//指定表名称 hive_tob_dealer。 如果不存在，hive 会自动创建</span><br><span class="line">bin/sqoop <span class="keyword">import</span> --hive-import  <span class="variable">$c</span> --table tob_dealer -m <span class="number">1</span> --hive-table hive_tob_dealer</span><br><span class="line"></span><br><span class="line">//指定 Where 条件。 只导id=<span class="number">1</span>的得数据</span><br><span class="line">bin/sqoop <span class="keyword">import</span> --hive-import  <span class="variable">$c</span> --table tob_dealer -m <span class="number">1</span> --hive-table hive_tob_dealer --<span class="keyword">where</span> <span class="string">'id=1'</span></span><br><span class="line"></span><br><span class="line">//指定 Select  条件。 只导id=<span class="number">1</span>的得数据， 不需要指定 table。必须指定 and <span class="variable">$CONDITIONS</span></span><br><span class="line">bin/sqoop <span class="keyword">import</span> --hive-import  <span class="variable">$c</span>  -m <span class="number">1</span>  --query <span class="string">'select * from tob_dealer where id &gt; 10 and $CONDITIONS'</span>  --target-dir <span class="string">"/tmp/select"</span> --hive-table hive_tob_dealer</span><br></pre></td></tr></table></figure>
-<h5 id="hive_导出到_Mysql">hive 导出到 Mysql</h5><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-- 把 /tmp 目录下的数据导出到 mysql 的表 tob_dealer 中</span><br><span class="line">-- 需要先在 mysql 创建对应的表</span><br><span class="line"> bin/sqoop export <span class="variable">$c</span> --table tob_dealer --export-dir <span class="string">"/tmp"</span></span><br></pre></td></tr></table></figure>
-<h4 id="sqoop_遇到的问题">sqoop 遇到的问题</h4><ul>
-<li>Error: Could not find or load main class org.apache.sqoop.Sqoop 这是因为找不到sqoop-1.4.5.jar文件导致的。</li>
-</ul>
-<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">修改 <span class="variable">$SQOOP</span>_HOME/bin/sqoop 脚本最后一行： </span><br><span class="line">exec $&#123;HADOOP_COMMON_HOME&#125;/bin/hadoop org.apache.sqoop.Sqoop <span class="string">"$@"</span> </span><br><span class="line"> 改为</span><br><span class="line">exec $&#123;HADOOP_COMMON_HOME&#125;/bin/hadoopjar <span class="variable">$SQOOP</span>_HOME sqoop-<span class="number">1.4</span>.<span class="number">5</span>.jar org.apache.sqoop.Sqoop <span class="string">"$@"</span> </span><br><span class="line">即：显示指定sqoop-<span class="number">1.4</span>.<span class="number">5</span>.jar文件的所在位置。</span><br></pre></td></tr></table></figure>
-<ul>
-<li>导数据的时候报错： <code>Could not load org.apache.hadoop.hive.conf.HiveConf. Make sure HIVE_CONF_DIR is set correctly.</code></li>
-</ul>
-<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi ~/.bashrc</span><br><span class="line">export HADOOP_CLASSPATH=<span class="variable">$HADOOP</span>_CLASSPATH:/hive/lib/*</span><br><span class="line">source ~/.bash_profile</span><br></pre></td></tr></table></figure>
-<h4 id="参考列表">参考列表</h4><ul>
-<li><a href="https://www.imooc.com/learn/399" target="_blank" rel="external">imooc 课程</a></li>
+<h2 id="使用">使用</h2><p>DBproxy 通过配置文件的方式来发挥作用。</p>
+<h4 id="主从配置">主从配置</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">pwds=xxx:<span class="number">6</span>eSYdMIPrZU5NA== <span class="preprocessor"># mysql 账号密码</span></span><br><span class="line">instance=test <span class="preprocessor"># 实例名称，</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># 配置一个读写库，其ip地址为:<span class="number">1.1</span><span class="number">.1</span><span class="number">.1</span>，端口为<span class="number">3306</span>；配置两个只读库，从库<span class="number">1</span>的ip地址为：<span class="number">1.1</span><span class="number">.1</span><span class="number">.1</span>，端口为：<span class="number">3306</span>，标签名称为：tag_mt，权重为<span class="number">10</span>；从库<span class="number">2</span>的ip地址为：<span class="number">2.2</span><span class="number">.2</span><span class="number">.2</span>，端口为：<span class="number">3306</span>，不配置标签名称和权重，该配置文件应如下：</span></span><br><span class="line"></span><br><span class="line">proxy-backend-addresses=<span class="number">1.1</span><span class="number">.1</span><span class="number">.1</span>:<span class="number">3306</span>;       </span><br><span class="line">proxy-read-only-backend-addresses=<span class="number">1.1</span><span class="number">.1</span><span class="number">.1</span>:<span class="number">3306</span>$tag_mt@<span class="number">10</span>,<span class="number">2.2</span><span class="number">.2</span><span class="number">.2</span>:<span class="number">3306</span>; </span><br><span class="line"></span><br><span class="line">proxy-address=<span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>:<span class="number">3307</span></span><br></pre></td></tr></table></figure>
+<h4 id="启动">启动</h4><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/mysql-proxy/bin/mysql-proxyd  test  <span class="built_in">start</span>|restart|<span class="built_in">stop</span></span><br></pre></td></tr></table></figure>
+<h4 id="连接">连接</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uxx -p** -h127<span class="number">.0</span><span class="number">.0</span><span class="number">.1</span> -P3307</span><br></pre></td></tr></table></figure>
+<h3 id="分表配置">分表配置</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tables=dbname<span class="class">.tablename</span><span class="class">.shardcolname</span><span class="class">.shardnum</span>[,dbname<span class="class">.tablename</span><span class="class">.shardcolname</span><span class="class">.shardnum</span>]           </span><br><span class="line">#<span class="id">#dbname</span>:数据库名称  tablename:分表的表名  shardcolname:分表键   shardnum:分表个数</span><br></pre></td></tr></table></figure>
+<h2 id="QA">QA</h2><ul>
+<li><p>Q : 报错 <code>proxy Warning - Syntax Forbidden Prepare</code> 的错误怎么解决?</p>
+<blockquote>
+<p>设置 PDO 的的处理方式，<code>PDO::ATTR_EMULATE_PREPARES =&gt; true</code> 解决。</p>
+</blockquote>
+</li>
+<li><p>Q 报错 <code>chart_set</code> 等错误？</p>
+<blockquote>
+<p>不支持自定义字符集，默认使用数据库配置的。</p>
+</blockquote>
+</li>
 </ul>
 </span>
       
@@ -310,7 +318,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/大数据/" rel="tag">#大数据</a>
+            <a href="/tags/运维/" rel="tag">#运维</a>
           
         </div>
       
@@ -319,16 +327,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/28/Hive/" rel="next" title="Hive的安装和一些例子">
-                <i class="fa fa-chevron-left"></i> Hive的安装和一些例子
+              <a href="/2018/03/01/sqoop/" rel="next" title="Sqoop实战">
+                <i class="fa fa-chevron-left"></i> Sqoop实战
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/20/DBProxy/" rel="prev" title="DBProxy">
-                DBProxy <i class="fa fa-chevron-right"></i>
+              <a href="/2018/06/21/gitlab-ci/" rel="prev" title="GitLab-CI">
+                GitLab-CI <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -443,7 +451,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sqoop"><span class="nav-number">1.</span> <span class="nav-text">Sqoop</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装"><span class="nav-number">1.0.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一些例子："><span class="nav-number">1.0.2.</span> <span class="nav-text">一些例子：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#把_mysql_数据导入到_hdfs"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">把 mysql 数据导入到 hdfs</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#把_mysql_数据导入到_Hive_数据仓库表"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">把 mysql 数据导入到 Hive 数据仓库表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#hive_导出到_Mysql"><span class="nav-number">1.0.2.3.</span> <span class="nav-text">hive 导出到 Mysql</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sqoop_遇到的问题"><span class="nav-number">1.0.3.</span> <span class="nav-text">sqoop 遇到的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考列表"><span class="nav-number">1.0.4.</span> <span class="nav-text">参考列表</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DBproxy"><span class="nav-number">1.</span> <span class="nav-text">DBproxy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文档"><span class="nav-number">1.1.</span> <span class="nav-text">文档</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">2.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#主从配置"><span class="nav-number">2.0.1.</span> <span class="nav-text">主从配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动"><span class="nav-number">2.0.2.</span> <span class="nav-text">启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#连接"><span class="nav-number">2.0.3.</span> <span class="nav-text">连接</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分表配置"><span class="nav-number">2.1.</span> <span class="nav-text">分表配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QA"><span class="nav-number">3.</span> <span class="nav-text">QA</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
